@@ -22,13 +22,15 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: 0;
         }
         
         canvas {
             display: block;
+            width: 100%;
+            height: 100%;
         }
         
         .page-wrapper {
@@ -74,6 +76,7 @@
             height: 60px;
             background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
             border-radius: 10px;
+            z-index: 2;
         }
         
         .tree-leaves {
@@ -88,6 +91,7 @@
             border-bottom: 120px solid #2ecc71;
             filter: drop-shadow(0 0 30px rgba(46, 204, 113, 0.6));
             animation: glow 3s ease-in-out infinite;
+            z-index: 1;
         }
         
         @keyframes glow {
@@ -218,7 +222,7 @@
         }
         
         .contact-section {
-            padding: 100px 20px;
+            padding: 60px 20px 100px;
             max-width: 700px;
             margin: 0 auto;
         }
@@ -384,6 +388,32 @@
                 flex-direction: column;
                 gap: 15px;
             }
+            
+            .contact-section {
+                padding: 30px 20px 80px;
+            }
+            
+            .tree-leaves {
+                border-left: 60px solid transparent;
+                border-right: 60px solid transparent;
+                border-bottom: 80px solid #2ecc71;
+            }
+            
+            .tree-trunk {
+                width: 16px;
+                height: 50px;
+                bottom: 15px;
+            }
+            
+            .roots {
+                width: 100px;
+                bottom: 8px;
+            }
+            
+            .root {
+                width: 2px;
+                height: 16px;
+            }
         }
     </style>
 </head>
@@ -463,7 +493,7 @@
         
         function resizeCanvas() {
             canvas.width = window.innerWidth;
-            canvas.height = document.body.scrollHeight;
+            canvas.height = window.innerHeight;
         }
         
         resizeCanvas();
@@ -550,15 +580,6 @@
         }
         
         animate();
-        
-        // Recalculate canvas height on scroll
-        let resizeTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                resizeCanvas();
-            }, 100);
-        });
     </script>
 </body>
 </html>
