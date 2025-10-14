@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Jozak</title>
+    <title>Jordan Jozak - The PSI Guy</title>
     <style>
         * {
             margin: 0;
@@ -46,77 +46,170 @@
         }
         
         .logo-container {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             margin-bottom: 80px;
             position: relative;
-            animation: float 8s ease-in-out infinite;
-            filter: drop-shadow(0 0 60px rgba(153, 126, 78, 0.9));
+            animation: divine-float 10s ease-in-out infinite;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
-        }
-        
-        .psi-logo {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        
-        .psi-logo svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 40px rgba(153, 126, 78, 1));
-            animation: psi-pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes psi-pulse {
+        @keyframes divine-float {
             0%, 100% { 
-                filter: drop-shadow(0 0 40px rgba(153, 126, 78, 1));
-                transform: scale(1);
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% { 
+                transform: translateY(-20px) rotate(2deg);
+            }
+            66% { 
+                transform: translateY(-30px) rotate(-2deg);
+            }
+        }
+        
+        .sphere-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+        }
+        
+        .divine-sphere {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(212, 175, 55, 0.4) 0%,
+                rgba(153, 126, 78, 0.3) 30%,
+                rgba(101, 67, 33, 0.2) 60%,
+                rgba(0, 0, 0, 0.4) 100%);
+            box-shadow: 
+                inset -20px -20px 60px rgba(0, 0, 0, 0.6),
+                inset 20px 20px 60px rgba(212, 175, 55, 0.3),
+                0 0 80px rgba(212, 175, 55, 0.6),
+                0 0 120px rgba(153, 126, 78, 0.4);
+            animation: sphere-pulse 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sphere-shine {
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 60%);
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: shine-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes sphere-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    inset -20px -20px 60px rgba(0, 0, 0, 0.6),
+                    inset 20px 20px 60px rgba(212, 175, 55, 0.3),
+                    0 0 80px rgba(212, 175, 55, 0.6),
+                    0 0 120px rgba(153, 126, 78, 0.4);
             }
             50% { 
-                filter: drop-shadow(0 0 80px rgba(153, 126, 78, 1)) drop-shadow(0 0 120px rgba(153, 126, 78, 0.5));
-                transform: scale(1.05);
+                box-shadow: 
+                    inset -20px -20px 60px rgba(0, 0, 0, 0.6),
+                    inset 20px 20px 60px rgba(212, 175, 55, 0.4),
+                    0 0 120px rgba(212, 175, 55, 0.8),
+                    0 0 160px rgba(153, 126, 78, 0.6);
             }
         }
         
-        .tree-overlay {
+        @keyframes shine-pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+        
+        .constellation-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            opacity: 0.15;
+        }
+        
+        .psi-sacred {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            animation: sacred-rotation 30s linear infinite;
+        }
+        
+        @keyframes sacred-rotation {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .psi-sacred svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 1));
+        }
+        
+        .trinity-stars {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 70%;
+        }
+        
+        .star {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #fff 0%, rgba(212, 175, 55, 0.8) 50%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(212, 175, 55, 0.6);
+            animation: star-twinkle 3s ease-in-out infinite;
+        }
+        
+        .star:nth-child(1) { top: 15%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
+        .star:nth-child(2) { bottom: 20%; left: 25%; transform: translate(-50%, 50%); animation-delay: 1s; }
+        .star:nth-child(3) { bottom: 20%; right: 25%; transform: translate(50%, 50%); animation-delay: 2s; }
+        
+        @keyframes star-twinkle {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        .tree-roots {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100px;
+            opacity: 0.12;
             pointer-events: none;
-            z-index: -1;
         }
         
-        .tree-trunk {
+        .root {
             position: absolute;
-            bottom: 20%;
+            bottom: 0;
             left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 120px;
-            background: linear-gradient(180deg, rgba(153, 126, 78, 0.3), rgba(101, 67, 33, 0.2));
-            border-radius: 5px;
+            width: 3px;
+            background: linear-gradient(to bottom, rgba(153, 126, 78, 0.3), transparent);
+            transform-origin: top center;
         }
         
-        .tree-branches {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 200px solid rgba(153, 126, 78, 0.15);
-        }
+        .root:nth-child(1) { height: 80px; transform: translateX(-50%) rotate(-25deg); }
+        .root:nth-child(2) { height: 100px; transform: translateX(-50%) rotate(-10deg); }
+        .root:nth-child(3) { height: 90px; transform: translateX(-50%); }
+        .root:nth-child(4) { height: 100px; transform: translateX(-50%) rotate(10deg); }
+        .root:nth-child(5) { height: 80px; transform: translateX(-50%) rotate(25deg); }
         
         .name {
             font-size: 5.5em;
@@ -137,7 +230,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: psionic-flow 10s linear infinite, text-shimmer 3s ease-in-out infinite;
+            animation: divine-shimmer 10s linear infinite;
             filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.8));
             position: relative;
             text-transform: uppercase;
@@ -159,28 +252,18 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: mind-scan 4s linear infinite;
-            filter: blur(2px);
+            animation: heavenly-light 5s linear infinite;
+            filter: blur(1.5px);
         }
         
-        @keyframes mind-scan {
+        @keyframes heavenly-light {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
         }
         
-        @keyframes psionic-flow {
+        @keyframes divine-shimmer {
             0% { background-position: 0% center; }
             100% { background-position: 300% center; }
-        }
-        
-        @keyframes text-shimmer {
-            0%, 100% { 
-                filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.8));
-            }
-            50% { 
-                filter: drop-shadow(0 0 80px rgba(212, 175, 55, 1)) 
-                        drop-shadow(0 0 120px rgba(153, 126, 78, 0.6));
-            }
         }
         
         .tagline {
@@ -191,7 +274,7 @@
             letter-spacing: 5px;
             font-weight: 300;
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
-            animation: tagline-breathe 5s ease-in-out infinite;
+            animation: tagline-breathe 6s ease-in-out infinite;
             text-transform: uppercase;
         }
         
@@ -199,10 +282,12 @@
             0%, 100% { 
                 opacity: 0.9;
                 letter-spacing: 5px;
+                transform: translateY(0);
             }
             50% { 
                 opacity: 1;
-                letter-spacing: 7px;
+                letter-spacing: 6px;
+                transform: translateY(-3px);
             }
         }
         
@@ -217,13 +302,13 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
             letter-spacing: 3px;
             margin-bottom: 70px;
             font-weight: 700;
             box-shadow: 0 15px 60px rgba(212, 175, 55, 0.6),
                         inset 0 0 30px rgba(255, 255, 255, 0.3);
-            animation: button-glow 4s linear infinite;
+            animation: holy-glow 5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
@@ -239,27 +324,33 @@
             background: linear-gradient(
                 60deg,
                 transparent,
-                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.7),
                 transparent
             );
             transform: rotate(45deg);
-            animation: psi-scan 3s linear infinite;
+            animation: divine-ray 4s linear infinite;
         }
         
-        @keyframes psi-scan {
+        @keyframes divine-ray {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
-        @keyframes button-glow {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
+        @keyframes holy-glow {
+            0%, 100% { 
+                box-shadow: 0 15px 60px rgba(212, 175, 55, 0.6),
+                           inset 0 0 30px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 20px 80px rgba(212, 175, 55, 0.9),
+                           inset 0 0 40px rgba(255, 255, 255, 0.5);
+            }
         }
         
         .cta-button:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 25px 80px rgba(212, 175, 55, 1),
-                        inset 0 0 50px rgba(255, 255, 255, 0.5);
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 25px 90px rgba(212, 175, 55, 1),
+                        inset 0 0 50px rgba(255, 255, 255, 0.6);
             border-color: rgba(255, 255, 255, 1);
         }
         
@@ -297,7 +388,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.4), transparent);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.5), transparent);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -308,7 +399,7 @@
         }
         
         .project-link:hover {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(153, 126, 78, 0.3));
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(153, 126, 78, 0.4));
             border-color: rgba(255, 255, 255, 1);
             transform: translateY(-4px) scale(1.05);
             color: #fff;
@@ -337,7 +428,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: psionic-flow 8s linear infinite;
+            animation: divine-shimmer 8s linear infinite;
             filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.8));
             text-transform: uppercase;
         }
@@ -387,7 +478,7 @@
         }
         
         .contact-section {
-            padding: 120px 20px;
+            padding: 120px 20px 150px;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -455,7 +546,7 @@
             margin-top: 15px;
             font-weight: 700;
             box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
-            animation: button-glow 4s linear infinite;
+            animation: holy-glow 5s ease-in-out infinite;
             text-transform: uppercase;
         }
         
@@ -483,9 +574,14 @@
             }
             
             .logo-container {
+                width: 250px;
+                height: 250px;
+                margin-bottom: 50px;
+            }
+            
+            .sphere-container {
                 width: 200px;
                 height: 200px;
-                margin-bottom: 50px;
             }
             
             .video-grid {
@@ -523,41 +619,70 @@
     <div class="page-wrapper">
         <section class="hero-section">
             <div class="logo-container">
-                <div class="tree-overlay">
-                    <div class="tree-branches"></div>
-                    <div class="tree-trunk"></div>
+                <div class="sphere-container">
+                    <div class="divine-sphere">
+                        <div class="sphere-shine"></div>
+                    </div>
                 </div>
-                <div class="psi-logo">
-                    <svg viewBox="0 0 1000 1400" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#997e4e" stroke="none">
-                            <!-- Top dot -->
-                            <circle cx="500" cy="80" r="50"/>
+                
+                <div class="constellation-overlay">
+                    <div class="trinity-stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    
+                    <div class="psi-sacred">
+                        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" stroke="#d4af37" stroke-width="4" stroke-linecap="round">
+                                <!-- Upper ascending line -->
+                                <line x1="200" y1="80" x2="200" y2="130" opacity="0.8"/>
+                                <line x1="200" y1="130" x2="310" y2="190" opacity="0.9"/>
+                                
+                                <!-- Right descending line -->
+                                <line x1="310" y1="190" x2="280" y2="320" opacity="0.9"/>
+                                
+                                <!-- Lower left line -->
+                                <line x1="280" y1="320" x2="100" y2="350" opacity="0.85"/>
+                                
+                                <!-- Left ascending line -->
+                                <line x1="100" y1="350" x2="70" y2="210" opacity="0.9"/>
+                                
+                                <!-- Upper left connection -->
+                                <line x1="70" y1="210" x2="200" y2="130" opacity="0.9"/>
+                                
+                                <!-- Sacred center point -->
+                                <circle cx="200" cy="200" r="3" fill="#d4af37" opacity="0.6"/>
+                            </g>
                             
-                            <!-- Upper right diagonal line -->
-                            <path d="M 550 150 L 900 450 L 850 500 L 500 200 Z"/>
-                            
-                            <!-- Right dot -->
-                            <circle cx="920" cy="520" r="50"/>
-                            
-                            <!-- Lower right diagonal line -->
-                            <path d="M 880 580 L 700 1050 L 640 1020 L 820 550 Z"/>
-                            
-                            <!-- Bottom left diagonal line -->
-                            <path d="M 600 1080 L 200 1350 L 150 1300 L 550 1030 Z"/>
-                            
-                            <!-- Bottom left dot -->
-                            <circle cx="150" cy="1350" r="50"/>
-                            
-                            <!-- Left diagonal line -->
-                            <path d="M 200 1280 L 100 750 L 160 730 L 260 1260 Z"/>
-                            
-                            <!-- Left dot -->
-                            <circle cx="80" cy="700" r="50"/>
-                            
-                            <!-- Upper left diagonal line going up -->
-                            <path d="M 130 660 L 450 200 L 500 240 L 180 700 Z"/>
-                        </g>
-                    </svg>
+                            <!-- Light emanation points -->
+                            <g fill="#fff" opacity="0.9">
+                                <circle cx="200" cy="80" r="5">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="310" cy="190" r="5">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="280" cy="320" r="5">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="100" cy="350" r="5">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="70" cy="210" r="5">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="tree-roots">
+                    <div class="root"></div>
+                    <div class="root"></div>
+                    <div class="root"></div>
+                    <div class="root"></div>
+                    <div class="root"></div>
                 </div>
             </div>
             
@@ -567,9 +692,9 @@
             <a href="https://patreon.com/ThePSIGuy" class="cta-button" target="_blank">Support on Patreon</a>
             
             <div class="projects">
-                <a href="https://telepathycenter.org" class="project-link" target="_blank"><span>The Telepathy Center</span></a>
-                <a href="https://nightunderthestars.org" class="project-link" target="_blank"><span>Night Under The Stars</span></a>
-                <a href="https://legacyvoices.org" class="project-link" target="_blank"><span>Legacy Voices</span></a>
+                <a href="https://thetelepathycenter.com" class="project-link" target="_blank"><span>The Telepathy Center</span></a>
+                <a href="https://nightunderthestars.com" class="project-link" target="_blank"><span>Night Under The Stars</span></a>
+                <a href="https://thelegacyvoices.com" class="project-link" target="_blank"><span>Legacy Voices</span></a>
             </div>
         </section>
         
@@ -637,11 +762,11 @@
         const connectionDistance = 220;
         
         const colors = [
-            'rgba(153, 126, 78, 1)',     // Psionic Bronze
-            'rgba(212, 175, 55, 1)',     // Psionic Gold
-            'rgba(184, 147, 95, 0.9)',   // Warm Gold
-            'rgba(153, 126, 78, 0.8)',   // Muted Bronze
-            'rgba(255, 255, 255, 0.7)'   // Ethereal White
+            'rgba(153, 126, 78, 1)',
+            'rgba(212, 175, 55, 1)',
+            'rgba(184, 147, 95, 0.9)',
+            'rgba(153, 126, 78, 0.8)',
+            'rgba(255, 255, 255, 0.7)'
         ];
         
         class Particle {
@@ -655,7 +780,6 @@
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 3 + 1.5;
                 
-                // Fluid, organic movement
                 const angle = Math.random() * Math.PI * 2;
                 const speed = Math.random() * 0.8 + 0.3;
                 this.speedX = Math.cos(angle) * speed;
@@ -669,13 +793,11 @@
             }
             
             update() {
-                // Organic, flowing movement
                 this.orbitOffset += this.orbitSpeed;
                 
                 this.x += this.speedX + Math.sin(this.orbitOffset) * 0.5;
                 this.y += this.speedY + Math.cos(this.orbitOffset) * 0.5;
                 
-                // Wrap around edges
                 if (this.x > canvas.width + 50) this.x = -50;
                 if (this.x < -50) this.x = canvas.width + 50;
                 if (this.y > canvas.height + 50) this.y = -50;
@@ -687,17 +809,14 @@
             draw() {
                 const pulse = Math.sin(this.pulseSize) * 2 + this.size;
                 
-                // Outer glow
                 ctx.shadowBlur = 25;
                 ctx.shadowColor = this.color;
                 
-                // Main particle
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, pulse, 0, Math.PI * 2);
                 ctx.fill();
                 
-                // Inner bright core
                 ctx.shadowBlur = 12;
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
                 ctx.beginPath();
@@ -722,7 +841,6 @@
                     if (distance < connectionDistance) {
                         const opacity = (1 - distance / connectionDistance) * 0.6;
                         
-                        // Fluid gradient lines
                         const gradient = ctx.createLinearGradient(
                             particles[i].x, particles[i].y,
                             particles[j].x, particles[j].y
@@ -748,7 +866,6 @@
         }
         
         function animate() {
-            // Slower fade for more fluid trails
             ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
