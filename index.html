@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Jozak - The PSI Guy</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Spectral:wght@200;300;400;500&family=Inter:wght@300;400;500;600&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,10 +14,12 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #000;
-            color: #fff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #e8e8e8;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .canvas-container {
@@ -31,6 +35,19 @@
             display: block;
         }
         
+        .mesh-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: 
+                radial-gradient(at 20% 30%, rgba(196, 152, 95, 0.06) 0px, transparent 50%),
+                radial-gradient(at 80% 70%, rgba(139, 163, 136, 0.04) 0px, transparent 50%);
+            pointer-events: none;
+        }
+        
         .page-wrapper {
             position: relative;
             z-index: 10;
@@ -42,27 +59,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 60px 20px;
+            padding: 80px 40px;
         }
         
         .logo-container {
-            width: 350px;
-            height: 350px;
-            margin-bottom: 80px;
+            width: 320px;
+            height: 320px;
+            margin-bottom: 70px;
             position: relative;
-            animation: divine-float 10s ease-in-out infinite;
+            animation: refined-float 12s ease-in-out infinite;
         }
         
-        @keyframes divine-float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg);
-            }
-            33% { 
-                transform: translateY(-20px) rotate(2deg);
-            }
-            66% { 
-                transform: translateY(-30px) rotate(-2deg);
-            }
+        @keyframes refined-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
         
         .sphere-container {
@@ -70,8 +80,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
+            width: 260px;
+            height: 260px;
         }
         
         .divine-sphere {
@@ -79,52 +89,52 @@
             height: 100%;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, 
-                rgba(212, 175, 55, 0.4) 0%,
-                rgba(153, 126, 78, 0.3) 30%,
-                rgba(101, 67, 33, 0.2) 60%,
+                rgba(196, 152, 95, 0.3) 0%,
+                rgba(139, 163, 136, 0.2) 30%,
+                rgba(101, 67, 33, 0.15) 60%,
                 rgba(0, 0, 0, 0.4) 100%);
             box-shadow: 
-                inset -20px -20px 60px rgba(0, 0, 0, 0.6),
-                inset 20px 20px 60px rgba(212, 175, 55, 0.3),
-                0 0 80px rgba(212, 175, 55, 0.6),
-                0 0 120px rgba(153, 126, 78, 0.4);
-            animation: sphere-pulse 4s ease-in-out infinite;
+                inset -20px -20px 50px rgba(0, 0, 0, 0.5),
+                inset 20px 20px 50px rgba(196, 152, 95, 0.2),
+                0 0 60px rgba(196, 152, 95, 0.4),
+                0 0 100px rgba(196, 152, 95, 0.2);
+            animation: sphere-pulse 5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
         
         .sphere-shine {
             position: absolute;
-            top: 15%;
-            left: 20%;
-            width: 40%;
-            height: 40%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 60%);
+            top: 18%;
+            left: 22%;
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
             border-radius: 50%;
-            filter: blur(20px);
-            animation: shine-pulse 3s ease-in-out infinite;
+            filter: blur(15px);
+            animation: shine-pulse 4s ease-in-out infinite;
         }
         
         @keyframes sphere-pulse {
             0%, 100% { 
                 box-shadow: 
-                    inset -20px -20px 60px rgba(0, 0, 0, 0.6),
-                    inset 20px 20px 60px rgba(212, 175, 55, 0.3),
-                    0 0 80px rgba(212, 175, 55, 0.6),
-                    0 0 120px rgba(153, 126, 78, 0.4);
+                    inset -20px -20px 50px rgba(0, 0, 0, 0.5),
+                    inset 20px 20px 50px rgba(196, 152, 95, 0.2),
+                    0 0 60px rgba(196, 152, 95, 0.4),
+                    0 0 100px rgba(196, 152, 95, 0.2);
             }
             50% { 
                 box-shadow: 
-                    inset -20px -20px 60px rgba(0, 0, 0, 0.6),
-                    inset 20px 20px 60px rgba(212, 175, 55, 0.4),
-                    0 0 120px rgba(212, 175, 55, 0.8),
-                    0 0 160px rgba(153, 126, 78, 0.6);
+                    inset -20px -20px 50px rgba(0, 0, 0, 0.5),
+                    inset 20px 20px 50px rgba(196, 152, 95, 0.3),
+                    0 0 80px rgba(196, 152, 95, 0.6),
+                    0 0 120px rgba(196, 152, 95, 0.3);
             }
         }
         
         @keyframes shine-pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.9; }
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
         }
         
         .constellation-overlay {
@@ -143,7 +153,7 @@
             transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            animation: sacred-rotation 30s linear infinite;
+            animation: sacred-rotation 40s linear infinite;
         }
         
         @keyframes sacred-rotation {
@@ -154,7 +164,7 @@
         .psi-sacred svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 1));
+            filter: drop-shadow(0 0 25px rgba(196, 152, 95, 0.8));
         }
         
         .trinity-stars {
@@ -168,147 +178,104 @@
         
         .star {
             position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, #fff 0%, rgba(212, 175, 55, 0.8) 50%, transparent 100%);
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #fff 0%, rgba(196, 152, 95, 0.8) 50%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(212, 175, 55, 0.6);
-            animation: star-twinkle 3s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(196, 152, 95, 0.5);
+            animation: star-twinkle 4s ease-in-out infinite;
         }
         
         .star:nth-child(1) { top: 15%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
-        .star:nth-child(2) { bottom: 20%; left: 25%; transform: translate(-50%, 50%); animation-delay: 1s; }
-        .star:nth-child(3) { bottom: 20%; right: 25%; transform: translate(50%, 50%); animation-delay: 2s; }
+        .star:nth-child(2) { bottom: 20%; left: 25%; transform: translate(-50%, 50%); animation-delay: 1.3s; }
+        .star:nth-child(3) { bottom: 20%; right: 25%; transform: translate(50%, 50%); animation-delay: 2.6s; }
         
         @keyframes star-twinkle {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
         }
-        
-        .tree-roots {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100px;
-            opacity: 0.12;
-            pointer-events: none;
-        }
-        
-        .root {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 3px;
-            background: linear-gradient(to bottom, rgba(153, 126, 78, 0.3), transparent);
-            transform-origin: top center;
-        }
-        
-        .root:nth-child(1) { height: 80px; transform: translateX(-50%) rotate(-25deg); }
-        .root:nth-child(2) { height: 100px; transform: translateX(-50%) rotate(-10deg); }
-        .root:nth-child(3) { height: 90px; transform: translateX(-50%); }
-        .root:nth-child(4) { height: 100px; transform: translateX(-50%) rotate(10deg); }
-        .root:nth-child(5) { height: 80px; transform: translateX(-50%) rotate(25deg); }
         
         .name {
-            font-size: 5.5em;
-            font-weight: 100;
-            letter-spacing: 24px;
-            margin-bottom: 40px;
+            font-family: 'Spectral', serif;
+            font-size: 5.2em;
+            font-weight: 300;
+            letter-spacing: 20px;
+            margin-bottom: 35px;
             text-align: center;
-            background: linear-gradient(
-                90deg,
-                #997e4e 0%,
-                #d4af37 20%,
-                #ffffff 40%,
-                #d4af37 60%,
-                #997e4e 80%,
-                #997e4e 100%
-            );
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: divine-shimmer 10s linear infinite;
-            filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.8));
-            position: relative;
-            text-transform: uppercase;
-        }
-        
-        .name::before {
-            content: 'JORDAN JOZAK';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(
-                120deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.9) 50%,
-                transparent 100%
-            );
+            background: linear-gradient(135deg, 
+                rgba(196, 152, 95, 0.9) 0%, 
+                rgba(232, 212, 168, 0.95) 25%,
+                rgba(255, 255, 255, 0.98) 50%,
+                rgba(232, 212, 168, 0.95) 75%,
+                rgba(196, 152, 95, 0.9) 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: heavenly-light 5s linear infinite;
-            filter: blur(1.5px);
+            animation: shimmer 12s linear infinite, luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s backwards;
+            filter: drop-shadow(0 2px 40px rgba(196, 152, 95, 0.3));
+            text-transform: uppercase;
+            text-shadow: 0 0 60px rgba(196, 152, 95, 0.2);
         }
         
-        @keyframes heavenly-light {
-            0% { background-position: -200% center; }
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
             100% { background-position: 200% center; }
         }
         
-        @keyframes divine-shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
+        @keyframes luxuryFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .tagline {
-            font-size: 1.5em;
-            color: rgba(212, 175, 55, 1);
-            margin-bottom: 60px;
-            text-align: center;
-            letter-spacing: 5px;
+            font-family: 'Spectral', serif;
+            font-size: 1.35em;
             font-weight: 300;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
-            animation: tagline-breathe 6s ease-in-out infinite;
-            text-transform: uppercase;
+            background: linear-gradient(135deg, 
+                rgba(196, 152, 95, 0.85) 0%, 
+                rgba(232, 212, 168, 0.9) 50%,
+                rgba(196, 152, 95, 0.85) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 55px;
+            text-align: center;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 30px rgba(196, 152, 95, 0.4);
+            animation: tagline-breathe 6s ease-in-out infinite, luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s backwards;
         }
         
         @keyframes tagline-breathe {
-            0%, 100% { 
-                opacity: 0.9;
-                letter-spacing: 5px;
-                transform: translateY(0);
-            }
-            50% { 
-                opacity: 1;
-                letter-spacing: 6px;
-                transform: translateY(-3px);
-            }
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 1; }
         }
         
         .cta-button {
-            padding: 24px 60px;
-            font-size: 1.2em;
-            background: linear-gradient(135deg, #997e4e 0%, #d4af37 50%, #997e4e 100%);
+            padding: 22px 55px;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #997e4e 0%, #c4985f 50%, #997e4e 100%);
             background-size: 200% auto;
-            color: #000;
-            border: 3px solid rgba(212, 175, 55, 1);
+            color: #0a0a0f;
+            border: none;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.5s ease;
-            letter-spacing: 3px;
-            margin-bottom: 70px;
-            font-weight: 700;
-            box-shadow: 0 15px 60px rgba(212, 175, 55, 0.6),
-                        inset 0 0 30px rgba(255, 255, 255, 0.3);
-            animation: holy-glow 5s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            font-weight: 600;
+            box-shadow: 
+                0 8px 24px rgba(196, 152, 95, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s backwards;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
@@ -321,63 +288,48 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                60deg,
-                transparent,
-                rgba(255, 255, 255, 0.7),
-                transparent
-            );
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transform: rotate(45deg);
-            animation: divine-ray 4s linear infinite;
+            animation: buttonShine 4s linear infinite;
         }
         
-        @keyframes divine-ray {
+        @keyframes buttonShine {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
-        @keyframes holy-glow {
-            0%, 100% { 
-                box-shadow: 0 15px 60px rgba(212, 175, 55, 0.6),
-                           inset 0 0 30px rgba(255, 255, 255, 0.3);
-            }
-            50% { 
-                box-shadow: 0 20px 80px rgba(212, 175, 55, 0.9),
-                           inset 0 0 40px rgba(255, 255, 255, 0.5);
-            }
-        }
-        
         .cta-button:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 25px 90px rgba(212, 175, 55, 1),
-                        inset 0 0 50px rgba(255, 255, 255, 0.6);
-            border-color: rgba(255, 255, 255, 1);
+            transform: scale(1.05) translateY(-3px);
+            background-position: 100% center;
+            box-shadow: 
+                0 12px 32px rgba(196, 152, 95, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
         
         .projects {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 1100px;
+            max-width: 900px;
+            animation: luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s backwards;
         }
         
         .project-link {
-            padding: 16px 36px;
-            background: linear-gradient(135deg, rgba(153, 126, 78, 0.3), rgba(212, 175, 55, 0.2));
-            border: 2px solid rgba(212, 175, 55, 0.7);
-            border-radius: 40px;
-            color: #d4af37;
+            padding: 15px 32px;
+            background: linear-gradient(135deg, rgba(196, 152, 95, 0.12) 0%, rgba(196, 152, 95, 0.05) 100%);
+            border: 1px solid rgba(196, 152, 95, 0.3);
+            border-radius: 30px;
+            color: #c4985f;
             text-decoration: none;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             backdrop-filter: blur(20px);
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-weight: 500;
+            letter-spacing: 1px;
             position: relative;
             overflow: hidden;
-            font-size: 1em;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
-            text-transform: uppercase;
+            font-size: 0.95em;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
         
         .project-link::before {
@@ -388,22 +340,22 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.5), transparent);
+            background: radial-gradient(circle, rgba(196, 152, 95, 0.2), transparent);
             transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            transition: width 0.5s, height 0.5s;
         }
         
         .project-link:hover::before {
-            width: 400px;
-            height: 400px;
+            width: 300px;
+            height: 300px;
         }
         
         .project-link:hover {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(153, 126, 78, 0.4));
-            border-color: rgba(255, 255, 255, 1);
-            transform: translateY(-4px) scale(1.05);
-            color: #fff;
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7);
+            background: linear-gradient(135deg, rgba(196, 152, 95, 0.2) 0%, rgba(196, 152, 95, 0.1) 100%);
+            border-color: rgba(196, 152, 95, 0.5);
+            transform: translateY(-3px);
+            color: #e8d4a8;
+            box-shadow: 0 8px 24px rgba(196, 152, 95, 0.3);
         }
         
         .project-link span {
@@ -411,59 +363,83 @@
             z-index: 2;
         }
         
-        .video-section {
-            padding: 120px 20px;
-            max-width: 1400px;
+        .media-section {
+            padding: 100px 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
         .section-title {
-            font-size: 3.2em;
-            margin-bottom: 80px;
+            font-family: 'Spectral', serif;
+            font-size: 2.8em;
+            font-weight: 300;
+            margin-bottom: 70px;
             text-align: center;
-            font-weight: 200;
-            letter-spacing: 8px;
-            background: linear-gradient(135deg, #997e4e 0%, #d4af37 50%, #997e4e 100%);
-            background-size: 200% auto;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, 
+                rgba(196, 152, 95, 0.9) 0%, 
+                rgba(232, 212, 168, 0.95) 50%,
+                rgba(196, 152, 95, 0.9) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: divine-shimmer 8s linear infinite;
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.8));
-            text-transform: uppercase;
+            filter: drop-shadow(0 2px 30px rgba(196, 152, 95, 0.25));
+        }
+        
+        .media-subsection {
+            margin-bottom: 100px;
+        }
+        
+        .subsection-title {
+            font-family: 'Spectral', serif;
+            font-size: 1.8em;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, 
+                rgba(196, 152, 95, 0.8) 0%, 
+                rgba(232, 212, 168, 0.85) 50%,
+                rgba(196, 152, 95, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 50px;
-            margin-top: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
         }
         
         .video-card {
             position: relative;
-            border-radius: 25px;
+            border-radius: 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(153, 126, 78, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
             backdrop-filter: blur(30px);
-            border: 3px solid rgba(212, 175, 55, 0.5);
-            padding: 12px;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+            border: 1px solid rgba(196, 152, 95, 0.2);
+            padding: 10px;
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(196, 152, 95, 0.1);
         }
         
         .video-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            border-color: rgba(212, 175, 55, 1);
-            box-shadow: 0 30px 90px rgba(212, 175, 55, 0.7);
+            transform: translateY(-10px);
+            border-color: rgba(196, 152, 95, 0.4);
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(196, 152, 95, 0.2);
         }
         
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
-            border-radius: 18px;
+            border-radius: 14px;
             overflow: hidden;
             background: #000;
         }
@@ -477,105 +453,136 @@
             border: none;
         }
         
-        .contact-section {
-            padding: 120px 20px 150px;
+        .audio-card {
             max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(196, 152, 95, 0.2);
+            padding: 12px;
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(196, 152, 95, 0.1);
+        }
+        
+        .audio-card:hover {
+            border-color: rgba(196, 152, 95, 0.4);
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(196, 152, 95, 0.2);
+        }
+        
+        .audio-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .audio-wrapper iframe {
+            width: 100%;
+            border: none;
+        }
+        
+        .contact-section {
+            padding: 100px 40px 120px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            background: linear-gradient(135deg, rgba(153, 126, 78, 0.2), rgba(212, 175, 55, 0.1));
+            gap: 22px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
             backdrop-filter: blur(30px);
-            padding: 60px;
-            border-radius: 35px;
-            border: 3px solid rgba(212, 175, 55, 0.5);
-            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.4);
+            padding: 55px 50px;
+            border-radius: 28px;
+            border: 1px solid rgba(196, 152, 95, 0.2);
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(196, 152, 95, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
         }
         
         .form-group input,
         .form-group textarea {
-            padding: 18px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(212, 175, 55, 0.4);
-            border-radius: 18px;
-            color: #d4af37;
-            font-size: 1.05em;
-            font-family: inherit;
-            transition: all 0.3s ease;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(196, 152, 95, 0.2);
+            border-radius: 14px;
+            color: #e8e8e8;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(212, 175, 55, 0.5);
+            color: rgba(160, 160, 160, 0.5);
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            background: rgba(0, 0, 0, 0.7);
-            border-color: rgba(212, 175, 55, 1);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(196, 152, 95, 0.5);
+            box-shadow: 0 0 0 4px rgba(196, 152, 95, 0.1);
         }
         
         .form-group textarea {
-            min-height: 180px;
+            min-height: 150px;
             resize: vertical;
         }
         
         .submit-button {
-            padding: 20px 60px;
-            font-size: 1.2em;
-            background: linear-gradient(135deg, #997e4e 0%, #d4af37 50%, #997e4e 100%);
+            padding: 20px 50px;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #997e4e 0%, #c4985f 50%, #997e4e 100%);
             background-size: 200% auto;
-            color: #000;
-            border: 3px solid rgba(212, 175, 55, 1);
+            color: #0a0a0f;
+            border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            letter-spacing: 3px;
-            margin-top: 15px;
-            font-weight: 700;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
-            animation: holy-glow 5s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            letter-spacing: 2px;
+            margin-top: 10px;
+            font-weight: 600;
+            box-shadow: 
+                0 8px 24px rgba(196, 152, 95, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
         }
         
         .submit-button:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow: 0 20px 70px rgba(212, 175, 55, 0.9);
-            border-color: rgba(255, 255, 255, 1);
+            transform: scale(1.05) translateY(-2px);
+            background-position: 100% center;
+            box-shadow: 
+                0 12px 32px rgba(196, 152, 95, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
         
         @media (max-width: 768px) {
             .name {
-                font-size: 2.8em;
-                letter-spacing: 8px;
+                font-size: 3.2em;
+                letter-spacing: 10px;
             }
             
             .tagline {
-                font-size: 1em;
-                letter-spacing: 3px;
-            }
-            
-            .projects {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
+                font-size: 1.05em;
+                letter-spacing: 2px;
             }
             
             .logo-container {
-                width: 250px;
-                height: 250px;
+                width: 240px;
+                height: 240px;
                 margin-bottom: 50px;
             }
             
@@ -586,27 +593,31 @@
             
             .video-grid {
                 grid-template-columns: 1fr;
-                gap: 35px;
+                gap: 30px;
             }
             
             .section-title {
                 font-size: 2em;
-                letter-spacing: 4px;
+                letter-spacing: 3px;
             }
             
-            .contact-form {
-                padding: 35px;
-            }
-            
-            .cta-button {
-                padding: 20px 50px;
-                font-size: 1.1em;
+            .subsection-title {
+                font-size: 1.4em;
                 letter-spacing: 2px;
             }
             
+            .contact-form {
+                padding: 40px 30px;
+            }
+            
+            .cta-button {
+                padding: 18px 45px;
+                font-size: 1em;
+            }
+            
             .project-link {
-                padding: 14px 30px;
-                font-size: 0.95em;
+                padding: 13px 28px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -615,6 +626,7 @@
     <div class="canvas-container">
         <canvas id="particleCanvas"></canvas>
     </div>
+    <div class="mesh-overlay"></div>
     
     <div class="page-wrapper">
         <section class="hero-section">
@@ -634,55 +646,35 @@
                     
                     <div class="psi-sacred">
                         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                            <g fill="none" stroke="#d4af37" stroke-width="4" stroke-linecap="round">
-                                <!-- Upper ascending line -->
-                                <line x1="200" y1="80" x2="200" y2="130" opacity="0.8"/>
-                                <line x1="200" y1="130" x2="310" y2="190" opacity="0.9"/>
-                                
-                                <!-- Right descending line -->
-                                <line x1="310" y1="190" x2="280" y2="320" opacity="0.9"/>
-                                
-                                <!-- Lower left line -->
-                                <line x1="280" y1="320" x2="100" y2="350" opacity="0.85"/>
-                                
-                                <!-- Left ascending line -->
-                                <line x1="100" y1="350" x2="70" y2="210" opacity="0.9"/>
-                                
-                                <!-- Upper left connection -->
-                                <line x1="70" y1="210" x2="200" y2="130" opacity="0.9"/>
-                                
-                                <!-- Sacred center point -->
-                                <circle cx="200" cy="200" r="3" fill="#d4af37" opacity="0.6"/>
+                            <g fill="none" stroke="#c4985f" stroke-width="3" stroke-linecap="round">
+                                <line x1="200" y1="80" x2="200" y2="130" opacity="0.7"/>
+                                <line x1="200" y1="130" x2="310" y2="190" opacity="0.8"/>
+                                <line x1="310" y1="190" x2="280" y2="320" opacity="0.8"/>
+                                <line x1="280" y1="320" x2="100" y2="350" opacity="0.75"/>
+                                <line x1="100" y1="350" x2="70" y2="210" opacity="0.8"/>
+                                <line x1="70" y1="210" x2="200" y2="130" opacity="0.8"/>
+                                <circle cx="200" cy="200" r="2" fill="#c4985f" opacity="0.5"/>
                             </g>
                             
-                            <!-- Light emanation points -->
-                            <g fill="#fff" opacity="0.9">
-                                <circle cx="200" cy="80" r="5">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                            <g fill="#fff" opacity="0.8">
+                                <circle cx="200" cy="80" r="4">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="310" cy="190" r="5">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                <circle cx="310" cy="190" r="4">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="0.6s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="280" cy="320" r="5">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                <circle cx="280" cy="320" r="4">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.2s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="100" cy="350" r="5">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+                                <circle cx="100" cy="350" r="4">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.8s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="70" cy="210" r="5">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                <circle cx="70" cy="210" r="4">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.2s" repeatCount="indefinite"/>
                                 </circle>
                             </g>
                         </svg>
                     </div>
-                </div>
-                
-                <div class="tree-roots">
-                    <div class="root"></div>
-                    <div class="root"></div>
-                    <div class="root"></div>
-                    <div class="root"></div>
-                    <div class="root"></div>
                 </div>
             </div>
             
@@ -698,22 +690,40 @@
             </div>
         </section>
         
-        <section class="video-section">
-            <h2 class="section-title">Recent Conversations</h2>
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <section class="media-section">
+            <h2 class="section-title">Media & Conversations</h2>
+            
+            <div class="media-subsection">
+                <h3 class="subsection-title">Recent Video Conversations</h3>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/H-guzG-3wF0?si=NPP0ukiq0VxGGt-C&amp;start=215" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            
+            <div class="media-subsection">
+                <h3 class="subsection-title">Esalen Meditation from 10/17/24</h3>
+                <div class="audio-card">
+                    <div class="audio-wrapper">
+                        <iframe src="https://open.spotify.com/embed/playlist/4vn7cfgOzfjtlpsnC98NPi?utm_source=generator&theme=0" height="352" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -746,6 +756,7 @@
     </div>
 
     <script>
+        // Refined particle system
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         
@@ -758,16 +769,8 @@
         window.addEventListener('resize', resizeCanvas);
         
         const particles = [];
-        const particleCount = 180;
-        const connectionDistance = 220;
-        
-        const colors = [
-            'rgba(153, 126, 78, 1)',
-            'rgba(212, 175, 55, 1)',
-            'rgba(184, 147, 95, 0.9)',
-            'rgba(153, 126, 78, 0.8)',
-            'rgba(255, 255, 255, 0.7)'
-        ];
+        const particleCount = 80;
+        const connectionDistance = 180;
         
         class Particle {
             constructor() {
@@ -778,51 +781,33 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1.5;
+                this.size = Math.random() * 2 + 1;
                 
                 const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 0.8 + 0.3;
+                const speed = Math.random() * 0.4 + 0.2;
                 this.speedX = Math.cos(angle) * speed;
                 this.speedY = Math.sin(angle) * speed;
                 
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.pulseSpeed = Math.random() * 0.05 + 0.02;
-                this.pulseSize = Math.random() * Math.PI * 2;
-                this.orbitOffset = Math.random() * Math.PI * 2;
-                this.orbitSpeed = (Math.random() - 0.5) * 0.02;
+                this.opacity = Math.random() * 0.5 + 0.3;
             }
             
             update() {
-                this.orbitOffset += this.orbitSpeed;
-                
-                this.x += this.speedX + Math.sin(this.orbitOffset) * 0.5;
-                this.y += this.speedY + Math.cos(this.orbitOffset) * 0.5;
+                this.x += this.speedX;
+                this.y += this.speedY;
                 
                 if (this.x > canvas.width + 50) this.x = -50;
                 if (this.x < -50) this.x = canvas.width + 50;
                 if (this.y > canvas.height + 50) this.y = -50;
                 if (this.y < -50) this.y = canvas.height + 50;
-                
-                this.pulseSize += this.pulseSpeed;
             }
             
             draw() {
-                const pulse = Math.sin(this.pulseSize) * 2 + this.size;
-                
-                ctx.shadowBlur = 25;
-                ctx.shadowColor = this.color;
-                
-                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = `rgba(196, 152, 95, ${this.opacity})`;
+                ctx.fillStyle = `rgba(196, 152, 95, ${this.opacity})`;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, pulse, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
-                
-                ctx.shadowBlur = 12;
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, pulse * 0.4, 0, Math.PI * 2);
-                ctx.fill();
-                
                 ctx.shadowBlur = 0;
             }
         }
@@ -839,26 +824,15 @@
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
                     if (distance < connectionDistance) {
-                        const opacity = (1 - distance / connectionDistance) * 0.6;
-                        
-                        const gradient = ctx.createLinearGradient(
-                            particles[i].x, particles[i].y,
-                            particles[j].x, particles[j].y
-                        );
-                        gradient.addColorStop(0, particles[i].color);
-                        gradient.addColorStop(0.5, 'rgba(212, 175, 55, ' + opacity + ')');
-                        gradient.addColorStop(1, particles[j].color);
-                        
-                        ctx.strokeStyle = gradient;
-                        ctx.globalAlpha = opacity;
-                        ctx.lineWidth = 1.5;
-                        ctx.shadowBlur = 8;
-                        ctx.shadowColor = 'rgba(212, 175, 55, 0.5)';
+                        const opacity = (1 - distance / connectionDistance) * 0.3;
+                        ctx.strokeStyle = `rgba(196, 152, 95, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.shadowBlur = 5;
+                        ctx.shadowColor = `rgba(196, 152, 95, ${opacity * 0.5})`;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
-                        ctx.globalAlpha = 1;
                         ctx.shadowBlur = 0;
                     }
                 }
@@ -866,7 +840,7 @@
         }
         
         function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             particles.forEach(particle => {
