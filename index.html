@@ -485,6 +485,179 @@
             border: none;
         }
         
+        /* Featured Mentions Section */
+        .mentions-section {
+            padding: 100px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .mentions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .mention-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(196, 152, 95, 0.2);
+            border-radius: 18px;
+            padding: 30px 28px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mention-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #997e4e 0%, #c4985f 50%, #997e4e 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .mention-card:hover::before {
+            opacity: 1;
+        }
+        
+        .mention-card:hover {
+            border-color: rgba(196, 152, 95, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(196, 152, 95, 0.25);
+        }
+        
+        .mention-source {
+            font-size: 0.85em;
+            color: rgba(196, 152, 95, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        .mention-title {
+            font-family: 'Spectral', serif;
+            font-size: 1.15em;
+            font-weight: 400;
+            color: #e8e8e8;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        
+        .mention-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #c4985f;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .mention-link:hover {
+            color: #e8d4a8;
+            gap: 12px;
+        }
+        
+        .mention-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        
+        .mention-link:hover::after {
+            transform: translateX(3px);
+        }
+        
+        /* Background Work Section */
+        .background-section {
+            padding: 100px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .background-grid {
+            display: grid;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .background-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(196, 152, 95, 0.2);
+            border-radius: 20px;
+            padding: 40px 35px;
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+        
+        .background-card:hover {
+            border-color: rgba(196, 152, 95, 0.4);
+            box-shadow: 0 16px 48px rgba(196, 152, 95, 0.2);
+        }
+        
+        .background-tag {
+            display: inline-block;
+            font-size: 0.8em;
+            color: rgba(196, 152, 95, 0.8);
+            background: rgba(196, 152, 95, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .background-title {
+            font-family: 'Spectral', serif;
+            font-size: 1.6em;
+            font-weight: 400;
+            color: #e8e8e8;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        
+        .background-description {
+            font-size: 1.05em;
+            color: #b0b0b0;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .background-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #c4985f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .background-link:hover {
+            color: #e8d4a8;
+            gap: 12px;
+        }
+        
+        .background-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        
+        .background-link:hover::after {
+            transform: translateX(3px);
+        }
+        
         .contact-section {
             padding: 100px 40px 120px;
             max-width: 700px;
@@ -596,6 +769,10 @@
                 gap: 30px;
             }
             
+            .mentions-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .section-title {
                 font-size: 2em;
                 letter-spacing: 3px;
@@ -698,22 +875,22 @@
                 <div class="video-grid">
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=453" title="Skywatcher Part 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=0" title="Skywatcher Part 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=545" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=0" title="Telepathy Camp" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/H-guzG-3wF0?si=NPP0ukiq0VxGGt-C&amp;start=215" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/H-guzG-3wF0?si=NPP0ukiq0VxGGt-C&amp;start=215" title="Vetted" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -725,6 +902,67 @@
                     <div class="audio-wrapper">
                         <iframe src="https://open.spotify.com/embed/playlist/4vn7cfgOzfjtlpsnC98NPi?utm_source=generator&theme=0" height="352" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mentions-section">
+            <h2 class="section-title">Featured & Mentioned</h2>
+            <div class="mentions-grid">
+                <div class="mention-card">
+                    <div class="mention-source">Cybernews</div>
+                    <div class="mention-title">Skywatcher: UAP Cosmic Intelligence</div>
+                    <a href="https://cybernews.com/news/skywatcher-ufo-uap-cosmic/" target="_blank" class="mention-link">Read Article</a>
+                </div>
+                
+                <div class="mention-card">
+                    <div class="mention-source">Cassiopaea</div>
+                    <div class="mention-title">UFOs/UAP Part 5</div>
+                    <a href="https://cassiopaea.substack.com/p/ufosuap-part-5" target="_blank" class="mention-link">Read Article</a>
+                </div>
+                
+                <div class="mention-card">
+                    <div class="mention-source">Medium</div>
+                    <div class="mention-title">Exoconscious Human: Alternative to Psionic Transhumanism</div>
+                    <a href="https://medium.com/@Exoconscious/exoconscious-human-alternative-to-psionic-transhumanism-37c09569420c" target="_blank" class="mention-link">Read Article</a>
+                </div>
+                
+                <div class="mention-card">
+                    <div class="mention-source">Skywatcher.ai</div>
+                    <div class="mention-title">About Skywatcher</div>
+                    <a href="https://skywatcher.ai/about" target="_blank" class="mention-link">Visit Site</a>
+                </div>
+                
+                <div class="mention-card">
+                    <div class="mention-source">UAP Week 2024</div>
+                    <div class="mention-title">Speaker Profile</div>
+                    <a href="https://endeavor.swoogo.com/uaweek/speaker/349703/jordan-jozak" target="_blank" class="mention-link">View Profile</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="background-section">
+            <h2 class="section-title">Bridging Worlds: Trees & Technology</h2>
+            <div class="background-grid">
+                <div class="background-card">
+                    <div class="background-tag">AI + Arboriculture</div>
+                    <h3 class="background-title">Satellite Vegetation Management with AiDash</h3>
+                    <p class="background-description">As Technology Evangelist at AiDash and ISA certified arborist, Jordan pioneered the use of satellite technology and artificial intelligence to revolutionize vegetation management—using electromagnetic wavelengths to see tree health from space, identifying hazards before they cause outages.</p>
+                    <a href="https://www.aidash.com/resource/satellite-vegetation-management-jordan-jozak/" target="_blank" class="background-link">Learn More</a>
+                </div>
+                
+                <div class="background-card">
+                    <div class="background-tag">Innovation</div>
+                    <h3 class="background-title">Hazard Tree Identification with Satellites & AI</h3>
+                    <p class="background-description">Jordan helped develop groundbreaking technology that inspects every tree in an entire network using satellite imagery—boosting grid reliability by 30% and finding individual unhealthy trees destined to cause outages, much like finding consciousness patterns invisible to conventional observation.</p>
+                    <a href="https://www.businesswire.com/news/home/20220920005502/en/AiDash-Overhauls-Utility-Industrys-Hazard-Tree-Identification-with-Satellite-Technology-and-AI" target="_blank" class="background-link">Read Announcement</a>
+                </div>
+                
+                <div class="background-card">
+                    <div class="background-tag">Podcast</div>
+                    <h3 class="background-title">Satellite Superheroes: Vegetation Management</h3>
+                    <p class="background-description">Jordan discusses how satellites are changing vegetation management by helping companies deploy resources at the right time and place—a parallel to consciousness work where understanding unseen patterns and connections transforms how we interact with living systems.</p>
+                    <a href="https://music.amazon.com/podcasts/331be909-5fa4-440d-a2c2-d7037fa2d111/episodes/19490d90-32fc-447d-b30e-71d043e2b78b/satellite-superheroes-episode-3-satellite-vegetation-management-with-jordan-jozak" target="_blank" class="background-link">Listen to Episode</a>
                 </div>
             </div>
         </section>
