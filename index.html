@@ -1019,11 +1019,13 @@
             <h2 class="section-title">Latest Updates</h2>
             <div class="twitter-container">
                 <a class="twitter-timeline" 
+                   data-width="600"
+                   data-height="600"
                    data-theme="dark" 
-                   data-tweet-limit="5" 
-                   data-chrome="noheader nofooter noborders transparent"
-                   href="https://twitter.com/mercifulmartin?ref_src=twsrc%5Etfw">
-                    Loading tweets from @mercifulmartin...
+                   data-tweet-limit="5"
+                   data-chrome="noheader nofooter noborders"
+                   href="https://twitter.com/mercifulmartin">
+                    Tweets by @mercifulmartin
                 </a>
             </div>
         </section>
@@ -1149,9 +1151,6 @@
         </section>
     </div>
 
-    <!-- Twitter Widget Script -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
     <script>
         // Refined particle system
         const canvas = document.getElementById('particleCanvas');
@@ -1259,5 +1258,8 @@
             }, 100);
         });
     </script>
+    
+    <!-- Twitter Widget Script - Load at end for reliability -->
+    <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
