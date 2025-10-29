@@ -63,8 +63,8 @@
         }
         
         .logo-container {
-            width: 320px;
-            height: 320px;
+            width: 280px;
+            height: 280px;
             margin-bottom: 70px;
             position: relative;
             animation: refined-float 12s ease-in-out infinite;
@@ -80,63 +80,66 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 260px;
-            height: 260px;
+            width: 220px;
+            height: 220px;
         }
         
+        /* Refined, cleaner sphere design */
         .divine-sphere {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(196, 152, 95, 0.3) 0%,
-                rgba(139, 163, 136, 0.2) 30%,
-                rgba(101, 67, 33, 0.15) 60%,
-                rgba(0, 0, 0, 0.4) 100%);
+            background: radial-gradient(circle at 35% 35%, 
+                rgba(232, 212, 168, 0.25) 0%,
+                rgba(196, 152, 95, 0.15) 40%,
+                rgba(139, 163, 136, 0.08) 70%,
+                rgba(0, 0, 0, 0.2) 100%);
             box-shadow: 
-                inset -20px -20px 50px rgba(0, 0, 0, 0.5),
-                inset 20px 20px 50px rgba(196, 152, 95, 0.2),
-                0 0 60px rgba(196, 152, 95, 0.4),
-                0 0 100px rgba(196, 152, 95, 0.2);
-            animation: sphere-pulse 5s ease-in-out infinite;
+                inset -15px -15px 40px rgba(0, 0, 0, 0.4),
+                inset 15px 15px 40px rgba(196, 152, 95, 0.15),
+                0 0 50px rgba(196, 152, 95, 0.3),
+                0 0 80px rgba(196, 152, 95, 0.15);
+            animation: sphere-pulse 6s ease-in-out infinite;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(196, 152, 95, 0.2);
         }
         
         .sphere-shine {
             position: absolute;
-            top: 18%;
-            left: 22%;
-            width: 35%;
-            height: 35%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+            top: 20%;
+            left: 25%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(15px);
-            animation: shine-pulse 4s ease-in-out infinite;
+            filter: blur(12px);
+            animation: shine-pulse 5s ease-in-out infinite;
         }
         
         @keyframes sphere-pulse {
             0%, 100% { 
                 box-shadow: 
-                    inset -20px -20px 50px rgba(0, 0, 0, 0.5),
-                    inset 20px 20px 50px rgba(196, 152, 95, 0.2),
-                    0 0 60px rgba(196, 152, 95, 0.4),
-                    0 0 100px rgba(196, 152, 95, 0.2);
+                    inset -15px -15px 40px rgba(0, 0, 0, 0.4),
+                    inset 15px 15px 40px rgba(196, 152, 95, 0.15),
+                    0 0 50px rgba(196, 152, 95, 0.3),
+                    0 0 80px rgba(196, 152, 95, 0.15);
             }
             50% { 
                 box-shadow: 
-                    inset -20px -20px 50px rgba(0, 0, 0, 0.5),
-                    inset 20px 20px 50px rgba(196, 152, 95, 0.3),
-                    0 0 80px rgba(196, 152, 95, 0.6),
-                    0 0 120px rgba(196, 152, 95, 0.3);
+                    inset -15px -15px 40px rgba(0, 0, 0, 0.4),
+                    inset 15px 15px 40px rgba(196, 152, 95, 0.2),
+                    0 0 60px rgba(196, 152, 95, 0.4),
+                    0 0 100px rgba(196, 152, 95, 0.2);
             }
         }
         
         @keyframes shine-pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.7; }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
         }
         
+        /* Simplified, cleaner geometric overlay */
         .constellation-overlay {
             position: absolute;
             top: 50%;
@@ -151,48 +154,43 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            animation: sacred-rotation 40s linear infinite;
-        }
-        
-        @keyframes sacred-rotation {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            width: 85%;
+            height: 85%;
         }
         
         .psi-sacred svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 25px rgba(196, 152, 95, 0.8));
+            filter: drop-shadow(0 0 20px rgba(196, 152, 95, 0.5));
         }
         
+        /* Cleaner star arrangement */
         .trinity-stars {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70%;
-            height: 70%;
+            width: 60%;
+            height: 60%;
         }
         
         .star {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, #fff 0%, rgba(196, 152, 95, 0.8) 50%, transparent 100%);
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(196, 152, 95, 0.6) 50%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(196, 152, 95, 0.5);
-            animation: star-twinkle 4s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5), 0 0 24px rgba(196, 152, 95, 0.4);
+            animation: star-twinkle 5s ease-in-out infinite;
         }
         
-        .star:nth-child(1) { top: 15%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
-        .star:nth-child(2) { bottom: 20%; left: 25%; transform: translate(-50%, 50%); animation-delay: 1.3s; }
-        .star:nth-child(3) { bottom: 20%; right: 25%; transform: translate(50%, 50%); animation-delay: 2.6s; }
+        .star:nth-child(1) { top: 18%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
+        .star:nth-child(2) { bottom: 22%; left: 28%; transform: translate(-50%, 50%); animation-delay: 1.6s; }
+        .star:nth-child(3) { bottom: 22%; right: 28%; transform: translate(50%, 50%); animation-delay: 3.2s; }
         
         @keyframes star-twinkle {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
         
         .name {
@@ -363,7 +361,7 @@
             z-index: 2;
         }
         
-        /* Featured Video Section - NEW */
+        /* Featured Video Section */
         .featured-section {
             padding: 120px 40px 80px;
             max-width: 1400px;
@@ -447,6 +445,35 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+        
+        /* Twitter Timeline Section */
+        .twitter-section {
+            padding: 100px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .twitter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(196, 152, 95, 0.25);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.35),
+                0 0 60px rgba(196, 152, 95, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .twitter-container:hover {
+            border-color: rgba(196, 152, 95, 0.4);
+            box-shadow: 
+                0 20px 56px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(196, 152, 95, 0.2);
         }
         
         .media-section {
@@ -840,14 +867,14 @@
             }
             
             .logo-container {
-                width: 240px;
-                height: 240px;
+                width: 220px;
+                height: 220px;
                 margin-bottom: 50px;
             }
             
             .sphere-container {
-                width: 200px;
-                height: 200px;
+                width: 180px;
+                height: 180px;
             }
             
             .featured-section {
@@ -855,6 +882,14 @@
             }
             
             .featured-video-container {
+                padding: 15px;
+            }
+            
+            .twitter-section {
+                padding: 80px 20px;
+            }
+            
+            .twitter-container {
                 padding: 15px;
             }
             
@@ -917,31 +952,39 @@
                     
                     <div class="psi-sacred">
                         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                            <g fill="none" stroke="#c4985f" stroke-width="3" stroke-linecap="round">
-                                <line x1="200" y1="80" x2="200" y2="130" opacity="0.7"/>
-                                <line x1="200" y1="130" x2="310" y2="190" opacity="0.8"/>
-                                <line x1="310" y1="190" x2="280" y2="320" opacity="0.8"/>
-                                <line x1="280" y1="320" x2="100" y2="350" opacity="0.75"/>
-                                <line x1="100" y1="350" x2="70" y2="210" opacity="0.8"/>
-                                <line x1="70" y1="210" x2="200" y2="130" opacity="0.8"/>
-                                <circle cx="200" cy="200" r="2" fill="#c4985f" opacity="0.5"/>
+                            <defs>
+                                <linearGradient id="psiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#e8d4a8;stop-opacity:0.8" />
+                                    <stop offset="50%" style="stop-color:#c4985f;stop-opacity:0.9" />
+                                    <stop offset="100%" style="stop-color:#997e4e;stop-opacity:0.7" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Simplified sacred geometry -->
+                            <g fill="none" stroke="url(#psiGradient)" stroke-width="2.5" stroke-linecap="round">
+                                <!-- Central triangle pointing up -->
+                                <path d="M 200 140 L 260 240 L 140 240 Z" opacity="0.8"/>
+                                
+                                <!-- Inverted triangle -->
+                                <path d="M 200 260 L 140 160 L 260 160 Z" opacity="0.7"/>
+                                
+                                <!-- Central circle -->
+                                <circle cx="200" cy="200" r="45" opacity="0.6"/>
                             </g>
                             
-                            <g fill="#fff" opacity="0.8">
-                                <circle cx="200" cy="80" r="4">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+                            <!-- Accent dots at key points -->
+                            <g fill="#e8d4a8" opacity="0.9">
+                                <circle cx="200" cy="140" r="3">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="310" cy="190" r="4">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+                                <circle cx="260" cy="240" r="3">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" begin="1.3s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="280" cy="320" r="4">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+                                <circle cx="140" cy="240" r="3">
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" begin="2.6s" repeatCount="indefinite"/>
                                 </circle>
-                                <circle cx="100" cy="350" r="4">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.8s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="70" cy="210" r="4">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+                                <circle cx="200" cy="200" r="4" opacity="1">
+                                    <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
                                 </circle>
                             </g>
                         </svg>
@@ -957,7 +1000,6 @@
             <div class="projects">
                 <a href="https://thetelepathycenter.com" class="project-link" target="_blank"><span>The Telepathy Center</span></a>
                 <a href="https://nightunderthestars.com" class="project-link" target="_blank"><span>Night Under The Stars</span></a>
-                <a href="https://thelegacyvoices.com" class="project-link" target="_blank"><span>Legacy Voices</span></a>
             </div>
         </section>
         
@@ -969,6 +1011,20 @@
                 <div class="featured-video-wrapper">
                     <iframe src="https://www.youtube.com/embed/juvgom9fQ9c?si=68urm5nvALNJRTf2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+            </div>
+        </section>
+        
+        <!-- TWITTER TIMELINE SECTION -->
+        <section class="twitter-section">
+            <h2 class="section-title">Latest Updates</h2>
+            <div class="twitter-container">
+                <a class="twitter-timeline" 
+                   data-theme="dark" 
+                   data-tweet-limit="5" 
+                   data-chrome="noheader nofooter noborders transparent"
+                   href="https://twitter.com/mercifulmartin?ref_src=twsrc%5Etfw">
+                    Loading tweets from @mercifulmartin...
+                </a>
             </div>
         </section>
         
@@ -991,11 +1047,6 @@
                     <div class="video-card">
                         <div class="video-wrapper">
                             <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=0" title="Telepathy Camp" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/H-guzG-3wF0?si=NPP0ukiq0VxGGt-C&amp;start=215" title="Vetted" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -1097,6 +1148,9 @@
             </form>
         </section>
     </div>
+
+    <!-- Twitter Widget Script -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <script>
         // Refined particle system
