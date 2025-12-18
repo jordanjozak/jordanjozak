@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Jozak - The PSI Guy</title>
+    <title>Jordan Jozak - The Telepathy Center</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Spectral:wght@200;300;400;500&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
         
         * {
             margin: 0;
@@ -13,218 +13,310 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #2d5f4f;
+            --accent: #7ba591;
+            --gold: #d4af37;
+            --gold-light: #f4d673;
+            --light: #e8f0ed;
+            --dark: #1a1a1a;
+            --text: #2c3e3a;
+        }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0f;
-            color: #e8e8e8;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(123, 165, 145, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #f5f9f7 0%, #e8f0ed 50%, #fdfbf3 100%);
+            color: var(--text);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            position: relative;
         }
         
-        .canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        
-        canvas {
-            display: block;
-        }
-        
-        .mesh-overlay {
+        /* Golden energy flow background */
+        .golden-flow {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
-            background: 
-                radial-gradient(at 20% 30%, rgba(196, 152, 95, 0.06) 0px, transparent 50%),
-                radial-gradient(at 80% 70%, rgba(139, 163, 136, 0.04) 0px, transparent 50%);
             pointer-events: none;
+            opacity: 0.6;
         }
         
-        .page-wrapper {
+        .flow-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.4) 20%, 
+                rgba(244, 214, 115, 0.8) 50%, 
+                rgba(212, 175, 55, 0.4) 80%, 
+                transparent 100%);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            animation: flow-move 15s linear infinite;
+        }
+        
+        .flow-line:nth-child(1) {
+            top: 15%;
+            width: 60%;
+            left: -60%;
+            animation-delay: 0s;
+        }
+        
+        .flow-line:nth-child(2) {
+            top: 35%;
+            width: 50%;
+            right: -50%;
+            animation: flow-move-reverse 18s linear infinite;
+            animation-delay: 3s;
+        }
+        
+        .flow-line:nth-child(3) {
+            top: 55%;
+            width: 70%;
+            left: -70%;
+            animation-delay: 6s;
+        }
+        
+        .flow-line:nth-child(4) {
+            top: 75%;
+            width: 55%;
+            right: -55%;
+            animation: flow-move-reverse 20s linear infinite;
+            animation-delay: 9s;
+        }
+        
+        @keyframes flow-move {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 100%)); }
+        }
+        
+        @keyframes flow-move-reverse {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100vw - 100%)); }
+        }
+        
+        .golden-mandala {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            opacity: 0.08;
+            z-index: 1;
+            pointer-events: none;
+            animation: mandala-rotate 60s linear infinite;
+        }
+        
+        .golden-mandala:nth-child(1) {
+            top: 10%;
+            right: -200px;
+        }
+        
+        .golden-mandala:nth-child(2) {
+            bottom: 20%;
+            left: -250px;
+            animation-direction: reverse;
+            animation-duration: 80s;
+        }
+        
+        @keyframes mandala-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Organic flowing background with gold accents */
+        .background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        
+        .content-wrapper {
             position: relative;
             z-index: 10;
         }
         
-        .hero-section {
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 80px 40px;
+            text-align: center;
         }
         
-        .logo-container {
-            width: 280px;
-            height: 280px;
-            margin-bottom: 70px;
+        .logo-sphere {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 60px;
             position: relative;
-            animation: refined-float 12s ease-in-out infinite;
+            animation: gentle-float 8s ease-in-out infinite;
         }
         
-        @keyframes refined-float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
         
-        .sphere-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 220px;
-            height: 220px;
-        }
-        
-        /* Refined, cleaner sphere design */
-        .divine-sphere {
+        .organic-sphere {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, 
-                rgba(232, 212, 168, 0.25) 0%,
-                rgba(196, 152, 95, 0.15) 40%,
-                rgba(139, 163, 136, 0.08) 70%,
-                rgba(0, 0, 0, 0.2) 100%);
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(244, 214, 115, 0.4) 0%,
+                rgba(123, 165, 145, 0.5) 35%,
+                rgba(45, 95, 79, 0.4) 65%,
+                rgba(212, 175, 55, 0.3) 100%);
             box-shadow: 
-                inset -15px -15px 40px rgba(0, 0, 0, 0.4),
-                inset 15px 15px 40px rgba(196, 152, 95, 0.15),
-                0 0 50px rgba(196, 152, 95, 0.3),
-                0 0 80px rgba(196, 152, 95, 0.15);
-            animation: sphere-pulse 6s ease-in-out infinite;
+                0 20px 60px rgba(45, 95, 79, 0.4),
+                0 10px 40px rgba(212, 175, 55, 0.3),
+                inset -15px -15px 40px rgba(0, 0, 0, 0.3),
+                inset 15px 15px 40px rgba(244, 214, 115, 0.4);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(196, 152, 95, 0.2);
+            animation: sphere-breathe 6s ease-in-out infinite;
         }
         
-        .sphere-shine {
+        @keyframes sphere-breathe {
+            0%, 100% {
+                box-shadow: 
+                    0 20px 60px rgba(45, 95, 79, 0.4),
+                    0 10px 40px rgba(212, 175, 55, 0.3),
+                    inset -15px -15px 40px rgba(0, 0, 0, 0.3),
+                    inset 15px 15px 40px rgba(244, 214, 115, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 25px 70px rgba(45, 95, 79, 0.5),
+                    0 15px 50px rgba(212, 175, 55, 0.5),
+                    inset -15px -15px 40px rgba(0, 0, 0, 0.2),
+                    inset 15px 15px 40px rgba(244, 214, 115, 0.6);
+            }
+        }
+        
+        .sphere-glow {
             position: absolute;
             top: 20%;
             left: 25%;
-            width: 40%;
-            height: 40%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(244, 214, 115, 0.8) 0%, rgba(255, 255, 255, 0.4) 40%, transparent 70%);
             border-radius: 50%;
-            filter: blur(12px);
-            animation: shine-pulse 5s ease-in-out infinite;
+            filter: blur(20px);
+            animation: glow-pulse 4s ease-in-out infinite;
         }
         
-        @keyframes sphere-pulse {
-            0%, 100% { 
-                box-shadow: 
-                    inset -15px -15px 40px rgba(0, 0, 0, 0.4),
-                    inset 15px 15px 40px rgba(196, 152, 95, 0.15),
-                    0 0 50px rgba(196, 152, 95, 0.3),
-                    0 0 80px rgba(196, 152, 95, 0.15);
-            }
-            50% { 
-                box-shadow: 
-                    inset -15px -15px 40px rgba(0, 0, 0, 0.4),
-                    inset 15px 15px 40px rgba(196, 152, 95, 0.2),
-                    0 0 60px rgba(196, 152, 95, 0.4),
-                    0 0 100px rgba(196, 152, 95, 0.2);
-            }
-        }
-        
-        @keyframes shine-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.5; }
-        }
-        
-        /* Simplified, cleaner geometric overlay */
-        .constellation-overlay {
+        .golden-ring {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            border: 2px solid rgba(212, 175, 55, 0.6);
+            border-radius: 50%;
+            animation: ring-orbit 8s linear infinite;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        @keyframes ring-orbit {
+            from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+        }
+        
+        .golden-ring:nth-child(2) {
+            width: 160%;
+            height: 160%;
+            animation: ring-orbit 12s linear infinite reverse;
+            border-color: rgba(244, 214, 115, 0.4);
+        }
+        
+        .sphere-particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
-        }
-        
-        .psi-sacred {
-            position: absolute;
-            top: 50%;
-            left: 50%;
             transform: translate(-50%, -50%);
-            width: 85%;
-            height: 85%;
         }
         
-        .psi-sacred svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 20px rgba(196, 152, 95, 0.5));
-        }
-        
-        /* Cleaner star arrangement */
-        .trinity-stars {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            height: 60%;
-        }
-        
-        .star {
+        .sphere-particle {
             position: absolute;
             width: 4px;
             height: 4px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(196, 152, 95, 0.6) 50%, transparent 100%);
+            background: radial-gradient(circle, rgba(244, 214, 115, 1) 0%, rgba(212, 175, 55, 0.5) 50%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5), 0 0 24px rgba(196, 152, 95, 0.4);
-            animation: star-twinkle 5s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            animation: particle-float 4s ease-in-out infinite;
         }
         
-        .star:nth-child(1) { top: 18%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
-        .star:nth-child(2) { bottom: 22%; left: 28%; transform: translate(-50%, 50%); animation-delay: 1.6s; }
-        .star:nth-child(3) { bottom: 22%; right: 28%; transform: translate(50%, 50%); animation-delay: 3.2s; }
+        .sphere-particle:nth-child(1) { top: 30%; left: 20%; animation-delay: 0s; }
+        .sphere-particle:nth-child(2) { top: 50%; left: 80%; animation-delay: 0.8s; }
+        .sphere-particle:nth-child(3) { top: 70%; left: 35%; animation-delay: 1.6s; }
+        .sphere-particle:nth-child(4) { top: 25%; left: 65%; animation-delay: 2.4s; }
+        .sphere-particle:nth-child(5) { top: 80%; left: 70%; animation-delay: 3.2s; }
         
-        @keyframes star-twinkle {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        @keyframes particle-float {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-20px) scale(1.3);
+                opacity: 1;
+            }
         }
         
-        .name {
-            font-family: 'Spectral', serif;
-            font-size: 5.2em;
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .connection-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+        }
+        
+        .connection-lines svg {
+            width: 100%;
+            height: 100%;
+            animation: rotate-slow 40s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+        
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5em;
             font-weight: 300;
-            letter-spacing: 20px;
-            margin-bottom: 35px;
-            text-align: center;
-            background: linear-gradient(135deg, 
-                rgba(196, 152, 95, 0.9) 0%, 
-                rgba(232, 212, 168, 0.95) 25%,
-                rgba(255, 255, 255, 0.98) 50%,
-                rgba(232, 212, 168, 0.95) 75%,
-                rgba(196, 152, 95, 0.9) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 12s linear infinite, luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s backwards;
-            filter: drop-shadow(0 2px 40px rgba(196, 152, 95, 0.3));
+            letter-spacing: 8px;
+            margin-bottom: 25px;
+            color: var(--primary);
             text-transform: uppercase;
-            text-shadow: 0 0 60px rgba(196, 152, 95, 0.2);
+            animation: fade-in-up 1.2s ease-out;
         }
         
-        @keyframes shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        
-        @keyframes luxuryFadeIn {
+        @keyframes fade-in-up {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -232,328 +324,119 @@
             }
         }
         
-        .tagline {
-            font-family: 'Spectral', serif;
-            font-size: 1.35em;
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8em;
             font-weight: 300;
-            background: linear-gradient(135deg, 
-                rgba(196, 152, 95, 0.85) 0%, 
-                rgba(232, 212, 168, 0.9) 50%,
-                rgba(196, 152, 95, 0.85) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 55px;
-            text-align: center;
-            letter-spacing: 4px;
-            text-shadow: 0 2px 30px rgba(196, 152, 95, 0.4);
-            animation: tagline-breathe 6s ease-in-out infinite, luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s backwards;
-        }
-        
-        @keyframes tagline-breathe {
-            0%, 100% { opacity: 0.85; }
-            50% { opacity: 1; }
-        }
-        
-        .cta-button {
-            padding: 22px 55px;
-            font-size: 1.1em;
-            background: linear-gradient(135deg, #997e4e 0%, #c4985f 50%, #997e4e 100%);
-            background-size: 200% auto;
-            color: #0a0a0f;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            color: var(--accent);
+            margin-bottom: 50px;
             letter-spacing: 2px;
+            animation: fade-in-up 1.2s ease-out 0.2s backwards;
+        }
+        
+        .mission-statement {
+            max-width: 650px;
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: var(--text);
             margin-bottom: 60px;
-            font-weight: 600;
-            box-shadow: 
-                0 8px 24px rgba(196, 152, 95, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            animation: luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s backwards;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
+            animation: fade-in-up 1.2s ease-out 0.4s backwards;
         }
         
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            animation: buttonShine 4s linear infinite;
-        }
-        
-        @keyframes buttonShine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .cta-button:hover {
-            transform: scale(1.05) translateY(-3px);
-            background-position: 100% center;
-            box-shadow: 
-                0 12px 32px rgba(196, 152, 95, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
-        
-        .projects {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 900px;
-            animation: luxuryFadeIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s backwards;
-        }
-        
-        .project-link {
-            padding: 15px 32px;
-            background: linear-gradient(135deg, rgba(196, 152, 95, 0.12) 0%, rgba(196, 152, 95, 0.05) 100%);
-            border: 1px solid rgba(196, 152, 95, 0.3);
-            border-radius: 30px;
-            color: #c4985f;
+        .cta-primary {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            font-size: 1.1em;
             font-weight: 500;
             letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.95em;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(45, 95, 79, 0.3);
+            animation: fade-in-up 1.2s ease-out 0.6s backwards;
         }
         
-        .project-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(196, 152, 95, 0.2), transparent);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-        
-        .project-link:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .project-link:hover {
-            background: linear-gradient(135deg, rgba(196, 152, 95, 0.2) 0%, rgba(196, 152, 95, 0.1) 100%);
-            border-color: rgba(196, 152, 95, 0.5);
+        .cta-primary:hover {
             transform: translateY(-3px);
-            color: #e8d4a8;
-            box-shadow: 0 8px 24px rgba(196, 152, 95, 0.3);
+            box-shadow: 0 15px 40px rgba(45, 95, 79, 0.4);
+            background: var(--accent);
         }
         
-        .project-link span {
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Featured Video Section */
-        .featured-section {
-            padding: 120px 40px 80px;
+        /* Section Styles */
+        .section {
+            padding: 120px 40px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        .featured-video-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-            backdrop-filter: blur(40px);
-            border: 2px solid rgba(196, 152, 95, 0.3);
-            border-radius: 30px;
-            padding: 20px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 80px rgba(196, 152, 95, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .featured-video-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                rgba(196, 152, 95, 0.4) 0%,
-                rgba(232, 212, 168, 0.4) 25%,
-                rgba(196, 152, 95, 0.4) 50%,
-                rgba(232, 212, 168, 0.4) 75%,
-                rgba(196, 152, 95, 0.4) 100%);
-            background-size: 300% 300%;
-            border-radius: 30px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            animation: gradientShift 8s ease infinite;
-        }
-        
-        .featured-video-container:hover::before {
-            opacity: 1;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .featured-badge {
-            display: inline-block;
-            font-size: 0.85em;
-            color: #0a0a0f;
-            background: linear-gradient(135deg, #c4985f 0%, #e8d4a8 50%, #c4985f 100%);
-            padding: 8px 20px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(196, 152, 95, 0.4);
-        }
-        
-        .featured-video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #000;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-        
-        .featured-video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* Twitter Timeline Section */
-        .twitter-section {
-            padding: 100px 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .twitter-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(196, 152, 95, 0.25);
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 
-                0 16px 48px rgba(0, 0, 0, 0.35),
-                0 0 60px rgba(196, 152, 95, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            transition: all 0.4s ease;
-        }
-        
-        .twitter-container:hover {
-            border-color: rgba(196, 152, 95, 0.4);
-            box-shadow: 
-                0 20px 56px rgba(0, 0, 0, 0.4),
-                0 0 80px rgba(196, 152, 95, 0.2);
-        }
-        
-        .media-section {
-            padding: 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
         }
         
         .section-title {
-            font-family: 'Spectral', serif;
-            font-size: 2.8em;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2em;
             font-weight: 300;
-            margin-bottom: 70px;
-            text-align: center;
-            letter-spacing: 6px;
-            background: linear-gradient(135deg, 
-                rgba(196, 152, 95, 0.9) 0%, 
-                rgba(232, 212, 168, 0.95) 50%,
-                rgba(196, 152, 95, 0.9) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 2px 30px rgba(196, 152, 95, 0.25));
+            color: var(--primary);
+            margin-bottom: 20px;
+            letter-spacing: 4px;
         }
         
-        .media-subsection {
-            margin-bottom: 100px;
+        .section-description {
+            font-size: 1.15em;
+            color: var(--accent);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
         
-        .subsection-title {
-            font-family: 'Spectral', serif;
-            font-size: 1.8em;
-            font-weight: 300;
-            margin-bottom: 40px;
-            text-align: center;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, 
-                rgba(196, 152, 95, 0.8) 0%, 
-                rgba(232, 212, 168, 0.85) 50%,
-                rgba(196, 152, 95, 0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
+        /* Video Grid */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
-            margin-top: 50px;
+            margin-top: 60px;
         }
         
         .video-card {
-            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
             border-radius: 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(196, 152, 95, 0.2);
-            padding: 10px;
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 40px rgba(196, 152, 95, 0.1);
+            box-shadow: 0 10px 40px rgba(45, 95, 79, 0.15);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(123, 165, 145, 0.2);
+            position: relative;
+        }
+        
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .video-card:hover::before {
+            opacity: 1;
         }
         
         .video-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(196, 152, 95, 0.4);
-            box-shadow: 
-                0 16px 48px rgba(0, 0, 0, 0.4),
-                0 0 60px rgba(196, 152, 95, 0.2);
+            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.25), 0 10px 30px rgba(212, 175, 55, 0.2);
         }
         
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
-            border-radius: 14px;
-            overflow: hidden;
             background: #000;
         }
         
@@ -566,641 +449,536 @@
             border: none;
         }
         
-        .audio-card {
-            max-width: 800px;
-            margin: 0 auto;
+        .video-info {
+            padding: 25px;
+        }
+        
+        .video-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .video-description {
+            font-size: 0.95em;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        /* Featured Section */
+        .featured-work {
+            background: linear-gradient(135deg, rgba(45, 95, 79, 0.05) 0%, rgba(123, 165, 145, 0.05) 100%);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.1);
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        
+        .featured-video {
             border-radius: 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(196, 152, 95, 0.2);
-            padding: 12px;
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 40px rgba(196, 152, 95, 0.1);
+            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.2);
         }
         
-        .audio-card:hover {
-            border-color: rgba(196, 152, 95, 0.4);
-            box-shadow: 
-                0 16px 48px rgba(0, 0, 0, 0.4),
-                0 0 60px rgba(196, 152, 95, 0.2);
-        }
-        
-        .audio-wrapper {
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .audio-wrapper iframe {
-            width: 100%;
-            border: none;
-        }
-        
-        /* Featured Mentions Section */
-        .mentions-section {
-            padding: 100px 40px;
-            max-width: 1000px;
+        /* Twitter Feed */
+        .twitter-embed {
+            max-width: 600px;
             margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 50px rgba(45, 95, 79, 0.15);
         }
         
-        .mentions-grid {
+        /* Articles Grid */
+        .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
             margin-top: 60px;
         }
         
-        .mention-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+        .article-card {
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(196, 152, 95, 0.2);
-            border-radius: 18px;
-            padding: 30px 28px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(45, 95, 79, 0.12);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(123, 165, 145, 0.2);
             position: relative;
             overflow: hidden;
         }
         
-        .mention-card::before {
+        .article-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #997e4e 0%, #c4985f 50%, #997e4e 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--accent));
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
         }
         
-        .mention-card:hover::before {
-            opacity: 1;
+        .article-card:hover::before {
+            transform: translateX(0);
         }
         
-        .mention-card:hover {
-            border-color: rgba(196, 152, 95, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(196, 152, 95, 0.25);
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.2);
         }
         
-        .mention-source {
+        .article-source {
             font-size: 0.85em;
-            color: rgba(196, 152, 95, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-        
-        .mention-title {
-            font-family: 'Spectral', serif;
-            font-size: 1.15em;
-            font-weight: 400;
-            color: #e8e8e8;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-        
-        .mention-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #c4985f;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-        }
-        
-        .mention-link:hover {
-            color: #e8d4a8;
-            gap: 12px;
-        }
-        
-        .mention-link::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-        
-        .mention-link:hover::after {
-            transform: translateX(3px);
-        }
-        
-        /* Background Work Section */
-        .background-section {
-            padding: 100px 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .background-grid {
-            display: grid;
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .background-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(196, 152, 95, 0.2);
-            border-radius: 20px;
-            padding: 40px 35px;
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-        }
-        
-        .background-card:hover {
-            border-color: rgba(196, 152, 95, 0.4);
-            box-shadow: 0 16px 48px rgba(196, 152, 95, 0.2);
-        }
-        
-        .background-tag {
-            display: inline-block;
-            font-size: 0.8em;
-            color: rgba(196, 152, 95, 0.8);
-            background: rgba(196, 152, 95, 0.1);
-            padding: 6px 14px;
-            border-radius: 20px;
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
         
-        .background-title {
-            font-family: 'Spectral', serif;
-            font-size: 1.6em;
-            font-weight: 400;
-            color: #e8e8e8;
-            margin-bottom: 16px;
+        .article-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35em;
+            color: var(--primary);
+            margin-bottom: 20px;
             line-height: 1.4;
         }
         
-        .background-description {
-            font-size: 1.05em;
-            color: #b0b0b0;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-        
-        .background-link {
+        .article-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #c4985f;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
-        .background-link:hover {
-            color: #e8d4a8;
+        .article-link:hover {
+            color: var(--primary);
             gap: 12px;
         }
         
-        .background-link::after {
+        .article-link::after {
             content: '→';
-            transition: transform 0.3s ease;
         }
         
-        .background-link:hover::after {
-            transform: translateX(3px);
-        }
-        
+        /* Contact Section */
         .contact-section {
-            padding: 100px 40px 120px;
-            max-width: 700px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 80px 60px;
+            max-width: 800px;
             margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.15);
         }
         
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 22px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(30px);
-            padding: 55px 50px;
-            border-radius: 28px;
-            border: 1px solid rgba(196, 152, 95, 0.2);
-            box-shadow: 
-                0 16px 48px rgba(0, 0, 0, 0.3),
-                0 0 60px rgba(196, 152, 95, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
+            gap: 25px;
         }
         
         .form-group input,
         .form-group textarea {
-            padding: 18px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(196, 152, 95, 0.2);
-            border-radius: 14px;
-            color: #e8e8e8;
+            width: 100%;
+            padding: 18px 22px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(123, 165, 145, 0.3);
+            border-radius: 12px;
             font-size: 1em;
             font-family: 'Inter', sans-serif;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(160, 160, 160, 0.5);
+            color: var(--text);
+            transition: all 0.3s ease;
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(196, 152, 95, 0.5);
-            box-shadow: 0 0 0 4px rgba(196, 152, 95, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(123, 165, 145, 0.1);
         }
         
         .form-group textarea {
-            min-height: 150px;
+            min-height: 160px;
             resize: vertical;
         }
         
-        .submit-button {
-            padding: 20px 50px;
-            font-size: 1.1em;
-            background: linear-gradient(135deg, #997e4e 0%, #c4985f 50%, #997e4e 100%);
-            background-size: 200% auto;
-            color: #0a0a0f;
+        .submit-btn {
+            padding: 18px 45px;
+            background: var(--primary);
+            color: white;
             border: none;
             border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 500;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            letter-spacing: 2px;
-            margin-top: 10px;
-            font-weight: 600;
-            box-shadow: 
-                0 8px 24px rgba(196, 152, 95, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
             text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
+            box-shadow: 0 10px 30px rgba(45, 95, 79, 0.3);
         }
         
-        .submit-button:hover {
-            transform: scale(1.05) translateY(-2px);
-            background-position: 100% center;
-            box-shadow: 
-                0 12px 32px rgba(196, 152, 95, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+            box-shadow: 0 15px 40px rgba(45, 95, 79, 0.4);
         }
         
+        /* Responsive */
         @media (max-width: 768px) {
-            .name {
-                font-size: 3.2em;
-                letter-spacing: 10px;
+            .main-title {
+                font-size: 2.8em;
+                letter-spacing: 4px;
             }
             
-            .tagline {
-                font-size: 1.05em;
-                letter-spacing: 2px;
+            .subtitle {
+                font-size: 1.3em;
             }
             
-            .logo-container {
-                width: 220px;
-                height: 220px;
-                margin-bottom: 50px;
-            }
-            
-            .sphere-container {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .featured-section {
-                padding: 80px 20px 60px;
-            }
-            
-            .featured-video-container {
-                padding: 15px;
-            }
-            
-            .twitter-section {
+            .section {
                 padding: 80px 20px;
             }
             
-            .twitter-container {
-                padding: 15px;
-            }
-            
-            .video-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .mentions-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .section-title {
-                font-size: 2em;
-                letter-spacing: 3px;
+                font-size: 2.2em;
             }
             
-            .subsection-title {
-                font-size: 1.4em;
-                letter-spacing: 2px;
+            .video-grid,
+            .articles-grid {
+                grid-template-columns: 1fr;
             }
             
-            .contact-form {
-                padding: 40px 30px;
+            .featured-work {
+                padding: 40px 25px;
             }
             
-            .cta-button {
-                padding: 18px 45px;
-                font-size: 1em;
-            }
-            
-            .project-link {
-                padding: 13px 28px;
-                font-size: 0.9em;
+            .contact-section {
+                padding: 50px 30px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="canvas-container">
-        <canvas id="particleCanvas"></canvas>
-    </div>
-    <div class="mesh-overlay"></div>
+    <canvas class="background-canvas" id="bgCanvas"></canvas>
     
-    <div class="page-wrapper">
-        <section class="hero-section">
-            <div class="logo-container">
-                <div class="sphere-container">
-                    <div class="divine-sphere">
-                        <div class="sphere-shine"></div>
+    <!-- Golden energy flows -->
+    <div class="golden-flow">
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+    </div>
+    
+    <!-- Golden mandalas -->
+    <svg class="golden-mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#f4d673;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#d4af37;stop-opacity:0.6" />
+            </linearGradient>
+        </defs>
+        <g stroke="url(#mandalaGrad)" fill="none" stroke-width="0.5">
+            <circle cx="100" cy="100" r="80" opacity="0.6"/>
+            <circle cx="100" cy="100" r="60" opacity="0.7"/>
+            <circle cx="100" cy="100" r="40" opacity="0.8"/>
+            <circle cx="100" cy="100" r="20" opacity="0.9"/>
+            <path d="M 100 20 L 100 180 M 20 100 L 180 100" opacity="0.5"/>
+            <path d="M 35 35 L 165 165 M 165 35 L 35 165" opacity="0.5"/>
+            <circle cx="100" cy="20" r="5" fill="url(#mandalaGrad)"/>
+            <circle cx="180" cy="100" r="5" fill="url(#mandalaGrad)"/>
+            <circle cx="100" cy="180" r="5" fill="url(#mandalaGrad)"/>
+            <circle cx="20" cy="100" r="5" fill="url(#mandalaGrad)"/>
+        </g>
+    </svg>
+    
+    <svg class="golden-mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="mandalaGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#f4d673;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#d4af37;stop-opacity:0.6" />
+            </linearGradient>
+        </defs>
+        <g stroke="url(#mandalaGrad2)" fill="none" stroke-width="0.5">
+            <circle cx="100" cy="100" r="80" opacity="0.6"/>
+            <circle cx="100" cy="100" r="60" opacity="0.7"/>
+            <circle cx="100" cy="100" r="40" opacity="0.8"/>
+            <circle cx="100" cy="100" r="20" opacity="0.9"/>
+            <path d="M 100 20 L 100 180 M 20 100 L 180 100" opacity="0.5"/>
+            <path d="M 35 35 L 165 165 M 165 35 L 35 165" opacity="0.5"/>
+        </g>
+    </svg>
+    
+    <div class="content-wrapper">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="logo-sphere">
+                <div class="organic-sphere">
+                    <div class="sphere-glow"></div>
+                    <div class="golden-ring"></div>
+                    <div class="golden-ring"></div>
+                    <div class="sphere-particles">
+                        <div class="sphere-particle"></div>
+                        <div class="sphere-particle"></div>
+                        <div class="sphere-particle"></div>
+                        <div class="sphere-particle"></div>
+                        <div class="sphere-particle"></div>
                     </div>
                 </div>
-                
-                <div class="constellation-overlay">
-                    <div class="trinity-stars">
-                        <div class="star"></div>
-                        <div class="star"></div>
-                        <div class="star"></div>
-                    </div>
-                    
-                    <div class="psi-sacred">
-                        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="psiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#e8d4a8;stop-opacity:0.8" />
-                                    <stop offset="50%" style="stop-color:#c4985f;stop-opacity:0.9" />
-                                    <stop offset="100%" style="stop-color:#997e4e;stop-opacity:0.7" />
-                                </linearGradient>
-                            </defs>
-                            
-                            <!-- Simplified sacred geometry -->
-                            <g fill="none" stroke="url(#psiGradient)" stroke-width="2.5" stroke-linecap="round">
-                                <!-- Central triangle pointing up -->
-                                <path d="M 200 140 L 260 240 L 140 240 Z" opacity="0.8"/>
-                                
-                                <!-- Inverted triangle -->
-                                <path d="M 200 260 L 140 160 L 260 160 Z" opacity="0.7"/>
-                                
-                                <!-- Central circle -->
-                                <circle cx="200" cy="200" r="45" opacity="0.6"/>
-                            </g>
-                            
-                            <!-- Accent dots at key points -->
-                            <g fill="#e8d4a8" opacity="0.9">
-                                <circle cx="200" cy="140" r="3">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="260" cy="240" r="3">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" begin="1.3s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="140" cy="240" r="3">
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" begin="2.6s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="200" cy="200" r="4" opacity="1">
-                                    <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
-                                </circle>
-                            </g>
-                        </svg>
-                    </div>
+                <div class="connection-lines">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#7ba591;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#2d5f4f;stop-opacity:0.3" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
+                        <circle cx="100" cy="100" r="45" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.5"/>
+                        <circle cx="100" cy="100" r="30" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.6"/>
+                        <line x1="100" y1="40" x2="100" y2="160" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="40" y1="100" x2="160" y2="100" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.3"/>
+                    </svg>
                 </div>
             </div>
             
-            <h1 class="name">JORDAN JOZAK</h1>
-            <p class="tagline">Bridging Worlds Through Story & Connection</p>
-            
-            <a href="https://patreon.com/ThePSIGuy" class="cta-button" target="_blank">Support on Patreon</a>
-            
-            <div class="projects">
-                <a href="https://thetelepathycenter.com" class="project-link" target="_blank"><span>The Telepathy Center</span></a>
-                <a href="https://nightunderthestars.com" class="project-link" target="_blank"><span>Night Under The Stars</span></a>
+            <h1 class="main-title">Jordan Jozak</h1>
+            <p class="subtitle">The Next Interface is Organic</p>
+            <p class="mission-statement">
+                Founder of The Telepathy Center. Exploring consciousness through direct experience.
+            </p>
+            <a href="https://thetelepathycenter.com" class="cta-primary" target="_blank">Visit The Telepathy Center</a>
+        </section>
+        
+        <!-- Featured Work -->
+        <section class="section">
+            <div class="featured-work">
+                <span class="featured-badge">Featured Work</span>
+                <div class="section-header">
+                    <h2 class="section-title">Consciousness & Connection</h2>
+                    <p class="section-description">
+                        Exploring the frontiers of human consciousness and our capacity for 
+                        non-verbal communication with ourselves, each other, and beyond.
+                    </p>
+                </div>
+                <div class="featured-video">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/juvgom9fQ9c?si=68urm5nvALNJRTf2" title="Featured Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </section>
         
-        <!-- FLAGSHIP VIDEO SECTION -->
-        <section class="featured-section">
-            <h2 class="section-title">Featured Work</h2>
-            <div class="featured-video-container">
-                <span class="featured-badge">Flagship Release</span>
-                <div class="featured-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/juvgom9fQ9c?si=68urm5nvALNJRTf2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
+        <!-- Latest Updates -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Latest Updates</h2>
+                <p class="section-description">
+                    Follow the journey of consciousness exploration and telepathic development
+                </p>
             </div>
-        </section>
-        
-        <!-- TWITTER TIMELINE SECTION -->
-        <section class="twitter-section">
-            <h2 class="section-title">Latest Updates</h2>
-            <div class="twitter-container">
+            <div class="twitter-embed">
                 <a class="twitter-timeline" 
                    data-width="600"
                    data-height="600"
-                   data-theme="dark" 
+                   data-theme="light" 
                    data-tweet-limit="5"
-                   data-chrome="noheader nofooter noborders"
+                   data-chrome="noheader nofooter noborders transparent"
                    href="https://twitter.com/mercifulmartin">
                     Tweets by @mercifulmartin
                 </a>
             </div>
         </section>
         
-        <section class="media-section">
-            <h2 class="section-title">Media & Conversations</h2>
-            
-            <div class="media-subsection">
-                <h3 class="subsection-title">Recent Video Conversations</h3>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=453" title="Skywatcher Part 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=0" title="Skywatcher Part 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=0" title="Telepathy Camp" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
+        <!-- Media & Conversations -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Media & Conversations</h2>
+                <p class="section-description">
+                    Dialogues on consciousness, telepathy, and the journey toward healing
+                </p>
             </div>
             
-            <div class="media-subsection">
-                <h3 class="subsection-title">Esalen Meditation from 10/17/24</h3>
-                <div class="audio-card">
-                    <div class="audio-wrapper">
-                        <iframe src="https://open.spotify.com/embed/playlist/4vn7cfgOzfjtlpsnC98NPi?utm_source=generator&theme=0" height="352" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=453" title="Skywatcher" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Skywatcher</h3>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=0" title="Skywatcher" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Continued</h3>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=0" title="Camp" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Camp</h3>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section class="mentions-section">
-            <h2 class="section-title">Featured & Mentioned</h2>
-            <div class="mentions-grid">
-                <div class="mention-card">
-                    <div class="mention-source">Cybernews</div>
-                    <div class="mention-title">Skywatcher: UAP Cosmic Intelligence</div>
-                    <a href="https://cybernews.com/news/skywatcher-ufo-uap-cosmic/" target="_blank" class="mention-link">Read Article</a>
-                </div>
-                
-                <div class="mention-card">
-                    <div class="mention-source">Cassiopaea</div>
-                    <div class="mention-title">UFOs/UAP Part 5</div>
-                    <a href="https://cassiopaea.substack.com/p/ufosuap-part-5" target="_blank" class="mention-link">Read Article</a>
-                </div>
-                
-                <div class="mention-card">
-                    <div class="mention-source">Medium</div>
-                    <div class="mention-title">Exoconscious Human: Alternative to Psionic Transhumanism</div>
-                    <a href="https://medium.com/@Exoconscious/exoconscious-human-alternative-to-psionic-transhumanism-37c09569420c" target="_blank" class="mention-link">Read Article</a>
-                </div>
-                
-                <div class="mention-card">
-                    <div class="mention-source">Skywatcher.ai</div>
-                    <div class="mention-title">About Skywatcher</div>
-                    <a href="https://skywatcher.ai/about" target="_blank" class="mention-link">Visit Site</a>
-                </div>
-                
-                <div class="mention-card">
-                    <div class="mention-source">UAP Week 2024</div>
-                    <div class="mention-title">Speaker Profile</div>
-                    <a href="https://endeavor.swoogo.com/uaweek/speaker/349703/jordan-jozak" target="_blank" class="mention-link">View Profile</a>
+        <!-- Meditation Practice -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Esalen</h2>
+                <p class="section-description">
+                    Meditation recording - October 17, 2024
+                </p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="video-card">
+                    <iframe style="border-radius: 12px; width: 100%; height: 352px;" src="https://open.spotify.com/embed/playlist/4vn7cfgOzfjtlpsnC98NPi?utm_source=generator&theme=0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
         
-        <section class="background-section">
-            <h2 class="section-title">Bridging Worlds: Trees & Technology</h2>
-            <div class="background-grid">
-                <div class="background-card">
-                    <div class="background-tag">AI + Arboriculture</div>
-                    <h3 class="background-title">Satellite Vegetation Management with AiDash</h3>
-                    <p class="background-description">As Technology Evangelist at AiDash and ISA certified arborist, Jordan pioneered the use of satellite technology and artificial intelligence to revolutionize vegetation management—using electromagnetic wavelengths to see tree health from space, identifying hazards before they cause outages.</p>
-                    <a href="https://www.aidash.com/resource/satellite-vegetation-management-jordan-jozak/" target="_blank" class="background-link">Learn More</a>
+        <!-- Featured Articles -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Featured & Mentioned</h2>
+                <p class="section-description">
+                    Perspectives on consciousness, telepathy, and healing
+                </p>
+            </div>
+            
+            <div class="articles-grid">
+                <div class="article-card">
+                    <div class="article-source">Cybernews</div>
+                    <h3 class="article-title">Skywatcher</h3>
+                    <a href="https://cybernews.com/news/skywatcher-ufo-uap-cosmic/" target="_blank" class="article-link">Read Article</a>
                 </div>
                 
-                <div class="background-card">
-                    <div class="background-tag">Innovation</div>
-                    <h3 class="background-title">Hazard Tree Identification with Satellites & AI</h3>
-                    <p class="background-description">Jordan helped develop groundbreaking technology that inspects every tree in an entire network using satellite imagery—boosting grid reliability by 30% and finding individual unhealthy trees destined to cause outages, much like finding consciousness patterns invisible to conventional observation.</p>
-                    <a href="https://www.businesswire.com/news/home/20220920005502/en/AiDash-Overhauls-Utility-Industrys-Hazard-Tree-Identification-with-Satellite-Technology-and-AI" target="_blank" class="background-link">Read Announcement</a>
+                <div class="article-card">
+                    <div class="article-source">Medium</div>
+                    <h3 class="article-title">Exoconscious</h3>
+                    <a href="https://medium.com/@Exoconscious/exoconscious-human-alternative-to-psionic-transhumanism-37c09569420c" target="_blank" class="article-link">Read Article</a>
                 </div>
                 
-                <div class="background-card">
-                    <div class="background-tag">Podcast</div>
-                    <h3 class="background-title">Satellite Superheroes: Vegetation Management</h3>
-                    <p class="background-description">Jordan discusses how satellites are changing vegetation management by helping companies deploy resources at the right time and place—a parallel to consciousness work where understanding unseen patterns and connections transforms how we interact with living systems.</p>
-                    <a href="https://music.amazon.com/podcasts/331be909-5fa4-440d-a2c2-d7037fa2d111/episodes/19490d90-32fc-447d-b30e-71d043e2b78b/satellite-superheroes-episode-3-satellite-vegetation-management-with-jordan-jozak" target="_blank" class="background-link">Listen to Episode</a>
+                <div class="article-card">
+                    <div class="article-source">UAP Week 2024</div>
+                    <h3 class="article-title">Speaker</h3>
+                    <a href="https://endeavor.swoogo.com/uaweek/speaker/349703/jordan-jozak" target="_blank" class="article-link">View Profile</a>
                 </div>
             </div>
         </section>
         
-        <section class="contact-section">
-            <h2 class="section-title">Get In Touch</h2>
-            <form name="jordan-contact" method="POST" data-netlify="true" class="contact-form">
-                <input type="hidden" name="form-name" value="jordan-contact">
-                
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
+        <!-- Contact -->
+        <section class="section">
+            <div class="contact-section">
+                <div class="section-header">
+                    <h2 class="section-title">Connect</h2>
+                    <p class="section-description">
+                        Interested in learning more about The Telepathy Center or exploring consciousness work together?
+                    </p>
                 </div>
-                
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone (Optional)">
-                </div>
-                
-                <div class="form-group">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-button">Send Message</button>
-            </form>
+                <form name="jordan-contact" method="POST" data-netlify="true" class="contact-form">
+                    <input type="hidden" name="form-name" value="jordan-contact">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Phone (Optional)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
         </section>
     </div>
 
     <script>
-        // Refined particle system
-        const canvas = document.getElementById('particleCanvas');
+        // Organic flowing background animation
+        const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
         
-        function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = document.documentElement.scrollHeight;
+        
+        window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = document.documentElement.scrollHeight;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        });
         
         const particles = [];
-        const particleCount = 80;
-        const connectionDistance = 180;
+        const particleCount = 60;
         
         class Particle {
             constructor() {
                 this.reset();
-                this.y = Math.random() * canvas.height;
             }
             
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                
-                const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 0.4 + 0.2;
-                this.speedX = Math.cos(angle) * speed;
-                this.speedY = Math.sin(angle) * speed;
-                
-                this.opacity = Math.random() * 0.5 + 0.3;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.isGold = Math.random() > 0.7;
             }
             
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
                 
-                if (this.x > canvas.width + 50) this.x = -50;
-                if (this.x < -50) this.x = canvas.width + 50;
-                if (this.y > canvas.height + 50) this.y = -50;
-                if (this.y < -50) this.y = canvas.height + 50;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
             }
             
             draw() {
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = `rgba(196, 152, 95, ${this.opacity})`;
-                ctx.fillStyle = `rgba(196, 152, 95, ${this.opacity})`;
+                if (this.isGold) {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = `rgba(212, 175, 55, ${this.opacity * 0.5})`;
+                } else {
+                    ctx.fillStyle = `rgba(123, 165, 145, ${this.opacity})`;
+                }
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -1219,12 +997,19 @@
                     const dy = particles[i].y - particles[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (distance < connectionDistance) {
-                        const opacity = (1 - distance / connectionDistance) * 0.3;
-                        ctx.strokeStyle = `rgba(196, 152, 95, ${opacity})`;
+                    if (distance < 150) {
+                        const opacity = (1 - distance / 150) * 0.2;
+                        const isGoldConnection = particles[i].isGold || particles[j].isGold;
+                        
+                        if (isGoldConnection) {
+                            ctx.strokeStyle = `rgba(212, 175, 55, ${opacity * 0.8})`;
+                            ctx.shadowBlur = 3;
+                            ctx.shadowColor = `rgba(212, 175, 55, ${opacity * 0.3})`;
+                        } else {
+                            ctx.strokeStyle = `rgba(123, 165, 145, ${opacity})`;
+                        }
+                        
                         ctx.lineWidth = 1;
-                        ctx.shadowBlur = 5;
-                        ctx.shadowColor = `rgba(196, 152, 95, ${opacity * 0.5})`;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -1236,8 +1021,7 @@
         }
         
         function animate() {
-            ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             particles.forEach(particle => {
                 particle.update();
@@ -1249,17 +1033,9 @@
         }
         
         animate();
-        
-        let resizeTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                resizeCanvas();
-            }, 100);
-        });
     </script>
     
-    <!-- Twitter Widget Script - Load at end for reliability -->
-    <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- Twitter Widget Script -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
