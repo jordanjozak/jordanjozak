@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Jozak | The Telepathy Center</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@100;200;300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@200;300;400;500;600&display=swap');
 
         :root {
             --obsidian: #030708;
             --cobalt-deep: #081629;
             --biolume: #40c4ff;
-            --deep-forest: #162621; /* Subtle life-breath */
+            --deep-forest: #162621;
             --slate-light: #e2e8f0;
             --glass-stroke: rgba(64, 196, 255, 0.1);
             --text-main: #f8fafc;
@@ -25,11 +25,10 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             line-height: 1.8;
-            font-weight: 200;
+            font-weight: 300; /* Increased for better visibility */
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Designer Texture: Film Grain Overlay --- */
         body::before {
             content: "";
             position: fixed;
@@ -40,7 +39,6 @@
             z-index: 100;
         }
 
-        /* --- Ambient Blue & Life Pulse --- */
         #portal-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -51,16 +49,15 @@
 
         .container { max-width: 1150px; margin: 0 auto; padding: 0 50px; }
 
-        /* --- Refined Header --- */
         header {
             padding: 60px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.65rem;
-            letter-spacing: 0.5em;
+            font-size: 0.8rem; /* Scaled up for readability */
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            font-weight: 400;
+            font-weight: 500;
             border-bottom: 1px solid var(--glass-stroke);
         }
 
@@ -69,10 +66,11 @@
             align-items: center;
             color: var(--biolume);
             letter-spacing: 0.2em;
+            font-weight: 600;
         }
 
         .pulse-node {
-            width: 6px; height: 6px;
+            width: 8px; height: 8px;
             background: var(--biolume);
             border-radius: 50%;
             margin-right: 12px;
@@ -81,11 +79,10 @@
         }
 
         @keyframes flow-pulse {
-            0%, 100% { opacity: 0.3; transform: scale(0.9); }
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
             50% { opacity: 1; transform: scale(1.1); }
         }
 
-        /* --- Hero: Human Presence --- */
         .hero {
             min-height: 80vh;
             display: flex;
@@ -96,11 +93,11 @@
 
         .hero-label {
             color: var(--biolume);
-            font-size: 0.7rem;
+            font-size: 0.8rem; /* Scaled up */
             text-transform: uppercase;
-            letter-spacing: 0.6em;
+            letter-spacing: 0.5em;
             margin-bottom: 25px;
-            opacity: 0.6;
+            font-weight: 500;
         }
 
         .hero-title {
@@ -112,34 +109,53 @@
             letter-spacing: -0.02em;
         }
 
-        .hero-title span { font-style: italic; color: var(--slate-light); opacity: 0.9; }
+        /* --- Shimmer/Sparkle Effect for Shared Field --- */
+        .shimmer {
+            font-style: italic;
+            background: linear-gradient(
+                90deg, 
+                var(--slate-light) 0%, 
+                var(--biolume) 25%, 
+                #fff 50%, 
+                var(--biolume) 75%, 
+                var(--slate-light) 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: sparkle-move 4s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(64, 196, 255, 0.3));
+        }
 
-        /* --- The Shared Field: Balanced Narrative --- */
+        @keyframes sparkle-move {
+            to { background-position: 200% center; }
+        }
+
+        /* --- Revised Cleaner Story Boxes --- */
         .story-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: var(--glass-stroke);
-            border: 1px solid var(--glass-stroke);
+            gap: 40px; /* Separated for a cleaner flow */
             margin-bottom: 120px;
         }
 
         .story-cell {
-            padding: 80px;
-            background: var(--obsidian);
-            transition: background 0.8s ease;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--glass-stroke);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .story-cell:hover {
             background: rgba(8, 22, 41, 0.4);
+            border-left-color: var(--biolume);
         }
 
         h2 { font-family: 'Cormorant Display', serif; font-size: 2.8rem; font-weight: 300; margin-bottom: 25px; }
-        p { font-weight: 200; font-size: 1.05rem; color: var(--slate-light); opacity: 0.85; }
+        p { font-weight: 300; font-size: 1.1rem; color: var(--slate-light); opacity: 0.95; }
         
-        .accent { color: var(--biolume); font-weight: 400; font-style: italic; }
+        .accent { color: var(--biolume); font-weight: 500; font-style: italic; }
 
-        /* --- Artifacts: Depth Grid --- */
         .artifact-card {
             background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--glass-stroke);
@@ -165,18 +181,18 @@
             top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* --- Connection CTA --- */
         .btn {
             display: inline-block;
             padding: 18px 45px;
             border: 1px solid var(--biolume);
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.4em;
             transition: all 0.4s ease;
             margin-top: 25px;
+            font-weight: 500;
         }
 
         .btn:hover {
@@ -185,7 +201,6 @@
             box-shadow: 0 0 25px rgba(64, 196, 255, 0.3);
         }
 
-        /* --- Footer --- */
         footer {
             padding: 120px 0 80px;
             text-align: center;
@@ -193,9 +208,11 @@
         }
 
         @media (max-width: 900px) {
-            .story-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 3.5rem; }
-            .story-cell { padding: 45px; }
+            .story-grid { grid-template-columns: 1fr; gap: 20px; }
+            .hero-title { font-size: 3.2rem; }
+            .story-cell { padding: 40px 30px; }
+            .container { padding: 0 25px; }
+            header { font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -205,14 +222,14 @@
 
     <div class="container">
         <header>
-            <div style="font-weight: 400;">Jordan Jozak</div>
+            <div style="font-weight: 500;">Jordan Jozak</div>
             <div class="status-pill"><span class="pulse-node"></span>Awareness Active</div>
         </header>
 
         <section class="hero">
             <p class="hero-label">A Gentle Invitation</p>
-            <h1 class="hero-title">Welcome to the<br><span>Shared Field</span></h1>
-            <p style="max-width: 580px; font-size: 1.15rem; font-weight: 200; color: var(--slate-light);">
+            <h1 class="hero-title">Welcome to the<br><span class="shimmer">Shared Field</span></h1>
+            <p style="max-width: 600px; font-size: 1.25rem; font-weight: 300; color: var(--slate-light);">
                 Exploring the warmth of human presence and the quiet, organic reality of telepathic connection.
             </p>
         </section>
@@ -221,38 +238,38 @@
             <div class="story-cell">
                 <p class="hero-label">The Foundation</p>
                 <h2>The Telepathy Center</h2>
-                <p>A dedicated space for <span class="accent">remembering</span> our natural capacity for non-verbal connection. It is not a place of study, but a sanctuary for direct experience and shared silence.</p>
+                <p>A dedicated space for <span class="accent">remembering</span> our natural capacity for non-verbal connection. It is not a place of study, but a sanctuary for direct experience.</p>
                 <a href="https://thetelepathycenter.com" target="_blank" class="btn">Experience the Work</a>
             </div>
             <div class="story-cell">
                 <p class="hero-label">The Vision</p>
                 <h2>A Quiet Presence</h2>
-                <p>We believe the most elegant connection is the one we were born with. By choosing <span class="accent">intentional clarity</span> and organic presence, we find our way back to what is real.</p>
+                <p>We believe the most elegant connection is the one we were born with. By choosing <span class="accent">intentional clarity</span>, we find our way back to what is real.</p>
             </div>
         </section>
 
         <section style="padding-bottom: 120px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 35px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px;">
                 <div class="artifact-card">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/juvgom9fQ9c" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <p class="hero-label" style="font-size: 0.6rem; margin: 0;">Presence // Field Focus</p>
+                    <p class="hero-label" style="font-size: 0.7rem; margin: 0;">Presence // Field Focus</p>
                 </div>
                 <div class="artifact-card">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?start=453" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <p class="hero-label" style="font-size: 0.6rem; margin: 0;">Inquiry // Skywatching</p>
+                    <p class="hero-label" style="font-size: 0.7rem; margin: 0;">Inquiry // Skywatching</p>
                 </div>
             </div>
         </section>
 
         <footer>
             <h2 style="font-size: 2.2rem; margin-bottom: 20px;">Let’s connect in the field.</h2>
-            <p style="margin-bottom: 40px; opacity: 0.6; letter-spacing: 0.1em;">Always curious, always open.</p>
+            <p style="margin-bottom: 40px; opacity: 0.8; letter-spacing: 0.1em; font-size: 1.1rem;">Always curious, always open.</p>
             <a href="mailto:jordan@thetelepathycenter.com" class="btn">Send a Signal</a>
-            <div style="margin-top: 100px; font-size: 0.55rem; opacity: 0.3; letter-spacing: 0.5em; text-transform: uppercase;">
+            <div style="margin-top: 100px; font-size: 0.65rem; opacity: 0.4; letter-spacing: 0.5em; text-transform: uppercase;">
                 &copy; 2025 JORDAN JOZAK • ORGANIC INTELLIGENCE
             </div>
         </footer>
@@ -267,10 +284,10 @@
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
             blobs = [
-                { x: w*0.1, y: h*0.2, r: 750, col: '#081629', vx: 0.07, vy: 0.03 }, // Cobalt
-                { x: w*0.9, y: h*0.8, r: 850, col: '#030708', vx: -0.04, vy: -0.07 }, // Obsidian
-                { x: w*0.5, y: h*0.5, r: 500, col: '#162621', vx: 0.02, vy: 0.02 }, // Forest Breath
-                { x: w*0.3, y: h*0.7, r: 450, col: '#0c2336', vx: 0.05, vy: -0.05 }  // Storm Depth
+                { x: w*0.1, y: h*0.2, r: 750, col: '#081629', vx: 0.07, vy: 0.03 },
+                { x: w*0.9, y: h*0.8, r: 850, col: '#030708', vx: -0.04, vy: -0.07 },
+                { x: w*0.5, y: h*0.5, r: 500, col: '#162621', vx: 0.02, vy: 0.02 },
+                { x: w*0.3, y: h*0.7, r: 450, col: '#0c2336', vx: 0.05, vy: -0.05 }
             ];
         }
 
