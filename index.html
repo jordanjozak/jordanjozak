@@ -25,36 +25,64 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             line-height: 1.8;
-            font-weight: 300; /* Increased for better visibility */
+            font-weight: 300;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
+        /* --- Elegant Flowing Background --- */
+        .bg-flow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--obsidian);
+        }
+
+        .flow-blob {
+            position: absolute;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            mix-blend-mode: screen;
+            animation: flow-movement 25s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { background: var(--cobalt-deep); top: -10%; left: -10%; }
+        .blob-2 { background: var(--deep-forest); bottom: -10%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
+        .blob-3 { background: #0c2336; top: 40%; right: 10%; animation-duration: 20s; animation-delay: -2s; }
+
+        @keyframes flow-movement {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(10%, 5%) scale(1.1); }
+            66% { transform: translate(-5%, 15%) scale(0.9); }
+            100% { transform: translate(5%, -5%) scale(1); }
+        }
+
+        /* Grainy texture overlay */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-            opacity: 0.03;
+            opacity: 0.04;
             pointer-events: none;
             z-index: 100;
         }
 
-        #portal-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: -1;
-            filter: blur(100px);
-            opacity: 0.8;
-        }
-
-        .container { max-width: 1150px; margin: 0 auto; padding: 0 50px; }
+        .container { max-width: 1150px; margin: 0 auto; padding: 0 50px; position: relative; z-index: 1; }
 
         header {
             padding: 60px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem; /* Scaled up for readability */
+            font-size: 0.8rem;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             font-weight: 500;
@@ -93,7 +121,7 @@
 
         .hero-label {
             color: var(--biolume);
-            font-size: 0.8rem; /* Scaled up */
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.5em;
             margin-bottom: 25px;
@@ -109,7 +137,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* --- Shimmer/Sparkle Effect for Shared Field --- */
         .shimmer {
             font-style: italic;
             background: linear-gradient(
@@ -131,23 +158,23 @@
             to { background-position: 200% center; }
         }
 
-        /* --- Revised Cleaner Story Boxes --- */
         .story-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px; /* Separated for a cleaner flow */
+            gap: 40px;
             margin-bottom: 120px;
         }
 
         .story-cell {
             padding: 60px 40px;
             background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
             border-left: 2px solid var(--glass-stroke);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .story-cell:hover {
-            background: rgba(8, 22, 41, 0.4);
+            background: rgba(8, 22, 41, 0.3);
             border-left-color: var(--biolume);
         }
 
@@ -158,6 +185,7 @@
 
         .artifact-card {
             background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(5px);
             border: 1px solid var(--glass-stroke);
             padding: 24px;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -212,13 +240,16 @@
             .hero-title { font-size: 3.2rem; }
             .story-cell { padding: 40px 30px; }
             .container { padding: 0 25px; }
-            header { font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="portal-canvas"></canvas>
+    <div class="bg-flow-container">
+        <div class="flow-blob blob-1"></div>
+        <div class="flow-blob blob-2"></div>
+        <div class="flow-blob blob-3"></div>
+    </div>
 
     <div class="container">
         <header>
@@ -275,43 +306,5 @@
         </footer>
     </div>
 
-    <script>
-        const canvas = document.getElementById('portal-canvas');
-        const ctx = canvas.getContext('2d');
-        let w, h, blobs = [];
-
-        function init() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-            blobs = [
-                { x: w*0.1, y: h*0.2, r: 750, col: '#081629', vx: 0.07, vy: 0.03 },
-                { x: w*0.9, y: h*0.8, r: 850, col: '#030708', vx: -0.04, vy: -0.07 },
-                { x: w*0.5, y: h*0.5, r: 500, col: '#162621', vx: 0.02, vy: 0.02 },
-                { x: w*0.3, y: h*0.7, r: 450, col: '#0c2336', vx: 0.05, vy: -0.05 }
-            ];
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, w, h);
-            blobs.forEach(b => {
-                b.x += b.vx; b.y += b.vy;
-                if (b.x < -200 || b.x > w + 200) b.vx *= -1;
-                if (b.y < -200 || b.y > h + 200) b.vy *= -1;
-
-                let g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-                g.addColorStop(0, b.col);
-                g.addColorStop(1, 'transparent');
-                ctx.fillStyle = g;
-                ctx.beginPath();
-                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', init);
-        init();
-        animate();
-    </script>
 </body>
 </html>
