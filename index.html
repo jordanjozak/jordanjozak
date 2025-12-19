@@ -3,49 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Jozak | The Next Interface</title>
+    <title>Jordan Jozak | The Telepathy Center</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@200;300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@200;300;400&display=swap');
 
         :root {
-            --bg-deep: #0d1a16;
-            --forest: #1b302a;
-            --gold: #d4af37;
-            --gold-glow: rgba(212, 175, 55, 0.3);
-            --mist: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(212, 175, 55, 0.2);
+            --deep-forest: #12211d;
+            --ethereal-green: #9dbfad;
+            --morning-gold: #d4af37;
+            --soft-white: #fdfcf8;
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(212, 175, 55, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--mist);
-            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-forest);
+            color: var(--soft-white);
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            line-height: 1.8;
-            font-weight: 200;
+            line-height: 1.7;
+            letter-spacing: 0.02em;
         }
 
-        /* --- Refined Background Pulse --- */
+        /* --- Dynamic Ambient Field --- */
         #portal-canvas {
             position: fixed;
             top: 0;
             left: 0;
             z-index: -1;
-            filter: blur(60px);
-            opacity: 0.5;
+            filter: blur(50px);
+            opacity: 0.7;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2.5rem;
         }
 
-        /* --- Hero: Elegant & Minimal --- */
+        /* --- Navigation --- */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .nav-logo { font-weight: 400; color: #fff; }
+        .nav-status { color: var(--morning-gold); font-style: italic; }
+
+        /* --- Hero Section --- */
         .hero {
-            height: 100vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -53,112 +68,121 @@
             text-align: center;
         }
 
-        .hero-title {
+        .hero-content { animation: heroReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .main-title {
             font-family: 'Cormorant Display', serif;
-            font-size: clamp(3.5rem, 8vw, 5.5rem);
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 20px;
-            background: linear-gradient(180deg, #fff 0%, var(--gold) 140%);
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #fff 30%, var(--morning-gold) 150%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .curiosity-tag {
-            font-size: 0.7rem;
+        .hero-sub {
+            font-family: 'Cormorant Display', serif;
+            font-size: 1.4rem;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 20px;
-            opacity: 0.8;
+            color: var(--ethereal-green);
+            margin-bottom: 2rem;
         }
 
-        /* --- Artifact Cards: The Refinement --- */
-        .artifact-section { padding: 100px 0; }
-
-        .artifact-grid {
+        /* --- The Story Flow (V1 Reimagined) --- */
+        .story-section { padding: 120px 0; }
+        
+        .story-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .artifact-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
+        .story-text h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            padding: 50px;
             border-radius: 4px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            transition: all 0.6s ease;
+            position: relative;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--morning-gold);
+            transform: scale(1.02);
+        }
+
+        /* --- Artifact Portal (Curated Media) --- */
+        .artifact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .video-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .video-item {
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 1px solid var(--glass-border);
+            position: relative;
             overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-
-        .artifact-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            filter: grayscale(0.2);
             transition: 0.5s;
         }
 
-        .artifact-card:hover .video-container { filter: grayscale(0); }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        .video-item:hover {
+            border-color: var(--morning-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .artifact-info {
-            padding: 25px;
-        }
-
-        .artifact-label {
-            font-family: 'Cormorant Display', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: var(--gold);
-        }
-
-        /* --- Buttons: Light & Elegant --- */
-        .btn {
-            padding: 12px 30px;
-            border: 1px solid var(--gold);
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            transition: 0.4s;
+        /* --- Buttons --- */
+        .portal-btn {
             display: inline-block;
+            padding: 18px 45px;
+            border: 1px solid var(--morning-gold);
+            color: var(--morning-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.7rem;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             background: transparent;
         }
 
-        .btn:hover {
-            background: var(--gold);
-            color: var(--bg-deep);
+        .portal-btn:hover {
+            background: var(--morning-gold);
+            color: var(--deep-forest);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
+
+        /* --- Animations --- */
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- Mobile Optimization --- */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
-            .artifact-grid { grid-template-columns: 1fr; }
-            section { padding: 60px 0; }
+        @media (max-width: 900px) {
+            .story-grid { grid-template-columns: 1fr; gap: 40px; }
+            .video-strip { grid-template-columns: 1fr; }
+            .main-title { font-size: 4rem; }
+            nav { flex-direction: column; gap: 10px; }
         }
-
-        /* --- Subtle Scroll Indicator --- */
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, var(--gold), transparent);
-            margin: 40px auto;
-        }
-
     </style>
 </head>
 <body>
@@ -166,96 +190,114 @@
     <canvas id="portal-canvas"></canvas>
 
     <div class="container">
+        <nav>
+            <div class="nav-logo">JORDAN JOZAK</div>
+            <div class="nav-status">the next interface is organic</div>
+        </nav>
+
         <section class="hero">
-            <div class="curiosity-tag">Inquiry • Consciousness • Presence</div>
-            <h1 class="hero-title">Jordan Jozak</h1>
-            <p style="max-width: 450px; opacity: 0.7; margin-bottom: 30px;">
-                Exploring the organic interfaces of direct experience as the founder of The Telepathy Center.
-            </p>
-            <a href="#artifacts" class="btn">View Artifacts</a>
-            <div class="scroll-line"></div>
+            <div class="hero-content">
+                <p class="hero-sub">Founder / Explorer</p>
+                <h1 class="main-title">Direct<br><span style="font-style: italic; font-weight: 300;">Connection</span></h1>
+                <p style="max-width: 550px; margin: 0 auto; font-weight: 200; opacity: 0.7; font-size: 1.1rem;">
+                    Bridging the gap between technological precision and the vast landscape of human consciousness.
+                </p>
+                <a href="#artifacts" class="portal-btn" style="margin-top: 40px;">Explore Artifacts</a>
+            </div>
         </section>
 
-        <section id="artifacts" class="artifact-section">
-            <h2 style="font-family: 'Cormorant Display', serif; font-size: 2.5rem; margin-bottom: 50px; font-weight: 300;">Refining the <span class="artifact-label">View</span></h2>
+        <section class="story-section">
+            <div class="story-grid">
+                <div class="story-text">
+                    <h2 style="font-family: 'Cormorant Display', serif; font-weight: 300;">A Journey <br><span style="color: var(--morning-gold);">Beyond the Interface</span></h2>
+                    <p>My work is centered on the belief that the most sophisticated interface we will ever encounter is our own consciousness.</p>
+                    <br>
+                    <p>Through <strong>The Telepathy Center</strong>, I explore how we can move past verbal and digital limitations to rediscover direct, non-verbal connection with ourselves and the world around us.</p>
+                </div>
+                <div class="glass-card">
+                    <h3 style="font-family: 'Cormorant Display', serif; color: var(--morning-gold); font-size: 1.8rem; margin-bottom: 1rem;">The Center</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 2rem;">A space for telepathic development, meditative inquiry, and the study of exoconsciousness.</p>
+                    <a href="https://thetelepathycenter.com" target="_blank" class="portal-btn" style="padding: 12px 25px; font-size: 0.6rem;">Visit Portal</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="artifacts">
+            <div class="artifact-header">
+                <h2 style="font-family: 'Cormorant Display', serif; font-size: 2.5rem; font-weight: 300;">Artifacts & Conversations</h2>
+                <p style="opacity: 0.6; letter-spacing: 0.1em; font-size: 0.8rem; text-transform: uppercase; margin-top: 10px;">Reflections on the Path</p>
+            </div>
             
-            <div class="artifact-grid">
-                <div class="artifact-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?start=453" frameborder="0"></iframe>
-                    </div>
-                    <div class="artifact-info">
-                        <div class="artifact-label">Skywatcher</div>
-                        <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 5px;">A dialogue on observation and the cosmos.</p>
-                    </div>
+            <div class="video-strip">
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/juvgom9fQ9c" frameborder="0" allowfullscreen></iframe>
                 </div>
-
-                <div class="artifact-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/juvgom9fQ9c" frameborder="0"></iframe>
-                    </div>
-                    <div class="artifact-info">
-                        <div class="artifact-label">Consciousness</div>
-                        <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 5px;">The Telepathy Center core exploration.</p>
-                    </div>
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/PcuxnqQLuAQ?start=453" frameborder="0" allowfullscreen></iframe>
                 </div>
-
-                <div class="artifact-card" style="display: flex; flex-direction: column; justify-content: center; min-height: 200px; text-align: center; padding: 20px;">
-                    <div class="artifact-label">Esalen Sessions</div>
-                    <p style="font-size: 0.8rem; opacity: 0.6; margin: 15px 0;">October 17, 2024 Meditation Recording</p>
-                    <a href="#" class="btn" style="font-size: 0.6rem; padding: 8px 15px;">Listen Now</a>
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/JUthXIGUsq8" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-        <footer style="padding: 100px 0 60px; text-align: center; border-top: 1px solid var(--glass-border);">
-            <p style="font-family: 'Cormorant Display', serif; font-size: 1.5rem; font-style: italic; margin-bottom: 20px;">Stay Curious.</p>
-            <div style="display: flex; justify-content: center; gap: 30px; font-size: 0.7rem; letter-spacing: 0.2em;">
-                <a href="https://thetelepathycenter.com" style="color: var(--gold); text-decoration: none;">CENTER</a>
-                <a href="mailto:jordan@thetelepathycenter.com" style="color: var(--gold); text-decoration: none;">CONNECT</a>
+        <footer style="padding: 100px 0 50px; text-align: center; border-top: 1px solid var(--glass-border);">
+            <p style="font-family: 'Cormorant Display', serif; font-size: 1.8rem; font-style: italic; margin-bottom: 30px;">Stay Curious.</p>
+            <a href="mailto:jordan@thetelepathycenter.com" class="portal-btn">Send Signal</a>
+            <div style="margin-top: 60px; font-size: 0.6rem; opacity: 0.3; letter-spacing: 4px; text-transform: uppercase;">
+                &copy; 2025 Jordan Jozak • Built for the Organic Future
             </div>
-            <div style="margin-top: 50px; opacity: 0.2; font-size: 0.6rem;">&copy; 2025 JORDAN JOZAK</div>
         </footer>
     </div>
 
     <script>
-        // Smoother, Deep Ambient Pulse
         const canvas = document.getElementById('portal-canvas');
         const ctx = canvas.getContext('2d');
-        let w, h, blobs = [];
+        let w, h, particles = [];
 
         function init() {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
-            blobs = [
-                { x: w*0.2, y: h*0.2, r: 400, color: '#1b302a', vx: 0.3, vy: 0.2 },
-                { x: w*0.8, y: h*0.7, r: 500, color: '#0d1a16', vx: -0.2, vy: -0.3 },
-                { x: w*0.5, y: h*0.5, r: 350, color: '#d4af37', vx: 0.1, vy: -0.1 }
-            ];
+            particles = [];
+            // Creating 5 large, atmospheric "presence" fields
+            for (let i = 0; i < 5; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 250 + 250,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    color: i % 2 === 0 ? '#1b302a' : '#d4af37'
+                });
+            }
         }
 
-        function animate() {
+        function draw() {
             ctx.clearRect(0, 0, w, h);
-            blobs.forEach(b => {
-                b.x += b.vx;
-                b.y += b.vy;
-                if (b.x < -100 || b.x > w + 100) b.vx *= -1;
-                if (b.y < -100 || b.y > h + 100) b.vy *= -1;
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                // Bounce logic with padding
+                if (p.x < -100 || p.x > w + 100) p.vx *= -1;
+                if (p.y < -100 || p.y > h + 100) p.vy *= -1;
 
-                let g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-                g.addColorStop(0, b.color);
-                g.addColorStop(1, 'transparent');
-                ctx.fillStyle = g;
+                let grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+                grad.addColorStop(0, p.color);
+                grad.addColorStop(1, 'transparent');
+                
+                ctx.globalCompositeOperation = 'screen';
+                ctx.fillStyle = grad;
                 ctx.beginPath();
-                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fill();
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
 
         window.addEventListener('resize', init);
         init();
-        animate();
+        draw();
     </script>
 </body>
 </html>
