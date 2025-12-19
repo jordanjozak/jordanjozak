@@ -8,19 +8,20 @@
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@200;300;400;500&display=swap');
 
         :root {
-            --earth-deep: #1a1612; /* Deep Burnt Umber */
-            --moss: #2d3830;
-            --sienna: #a67c52;
+            --forest-black: #0a110f; /* Deepest Forest Shadow */
+            --emerald-deep: #162621;
+            --sage: #7ba591;
+            --lichen: #c2d1c1;
             --gold: #d4af37;
-            --warm-light: #fdfaf5;
-            --line: rgba(166, 124, 82, 0.2);
-            --glow: rgba(212, 175, 55, 0.1);
+            --warm-light: #f4f7f5;
+            --line: rgba(123, 165, 145, 0.2);
+            --glow: rgba(212, 175, 55, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
 
         body {
-            background-color: var(--earth-deep);
+            background-color: var(--forest-black);
             color: var(--warm-light);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
@@ -28,18 +29,18 @@
             font-weight: 300;
         }
 
-        /* --- Ambient Organic Background --- */
+        /* --- Ambient Green Earth Background --- */
         #portal-canvas {
             position: fixed;
             top: 0; left: 0;
             z-index: -1;
-            filter: blur(70px);
-            opacity: 0.6;
+            filter: blur(80px);
+            opacity: 0.7;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
 
-        /* --- Warm Tech Header --- */
+        /* --- Refined Tech Header --- */
         header {
             padding: 50px 0;
             display: flex;
@@ -51,49 +52,57 @@
             border-bottom: 1px solid var(--line);
         }
 
+        .status-container {
+            display: flex;
+            align-items: center;
+            color: var(--sage);
+        }
+
         .pulse-node {
-            width: 8px; height: 8px;
+            width: 7px; height: 7px;
             background: var(--gold);
             border-radius: 50%;
             display: inline-block;
             margin-right: 12px;
-            box-shadow: 0 0 15px var(--gold);
+            box-shadow: 0 0 12px var(--gold);
             animation: breathe 4s infinite ease-in-out;
         }
 
         @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.3); opacity: 1; }
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.4); opacity: 1; }
         }
 
-        /* --- Hero: Inviting & Bold --- */
+        /* --- Hero: Grounded & Atmospheric --- */
         .hero {
-            min-height: 80vh;
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
         .hero-label {
-            color: var(--sienna);
-            font-size: 0.75rem;
+            color: var(--sage);
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.5em;
             margin-bottom: 20px;
+            font-weight: 400;
         }
 
         .hero-title {
             font-family: 'Cormorant Display', serif;
-            font-size: clamp(3.5rem, 10vw, 6.5rem);
-            line-height: 0.95;
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            line-height: 1;
             font-weight: 300;
             margin-bottom: 30px;
+            letter-spacing: -0.01em;
         }
 
-        .hero-title span { font-style: italic; color: var(--gold); }
+        .hero-title span { font-style: italic; color: var(--gold); border-bottom: 1px solid var(--line); }
 
-        /* --- The Experience: Grounded & Open --- */
+        /* --- The Experience: Mossy & Minimal --- */
         .invitation-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -101,38 +110,37 @@
             background: var(--line);
             border: 1px solid var(--line);
             margin-bottom: 100px;
+            backdrop-filter: blur(10px);
         }
 
         .invitation-cell {
             padding: 60px;
-            background: var(--earth-deep);
+            background: rgba(10, 17, 15, 0.8);
             transition: 0.5s ease;
         }
 
-        .invitation-cell:hover { background: rgba(166, 124, 82, 0.05); }
+        .invitation-cell:hover { background: rgba(22, 38, 33, 0.9); }
 
-        h2 { font-family: 'Cormorant Display', serif; font-size: 2.8rem; font-weight: 300; margin-bottom: 20px; }
+        h2 { font-family: 'Cormorant Display', serif; font-size: 2.8rem; font-weight: 300; margin-bottom: 20px; color: var(--lichen); }
         
-        .accent-text { color: var(--sienna); font-weight: 400; }
+        .accent-text { color: var(--sage); font-weight: 400; }
 
-        /* --- Artifacts: The Gallery --- */
-        .artifact-section { padding-bottom: 100px; }
-
+        /* --- Artifact Cards --- */
         .video-card {
-            background: rgba(255,255,255,0.02);
+            background: rgba(123, 165, 145, 0.03);
             border: 1px solid var(--line);
             padding: 20px;
-            margin-bottom: 30px;
             transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .video-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .video-card:hover { border-color: var(--gold); background: rgba(123, 165, 145, 0.07); }
 
         .video-frame {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             margin-bottom: 20px;
+            filter: saturate(0.8) contrast(1.1);
         }
 
         .video-frame iframe {
@@ -140,36 +148,37 @@
             top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* --- Interactive Elements --- */
+        /* --- Buttons --- */
         .btn {
             display: inline-block;
-            padding: 15px 35px;
-            border: 1px solid var(--sienna);
+            padding: 16px 35px;
+            border: 1px solid var(--sage);
             color: var(--warm-light);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.3em;
             transition: 0.4s;
             margin-top: 20px;
+            background: transparent;
         }
 
         .btn:hover {
-            background: var(--sienna);
-            color: var(--earth-deep);
-            box-shadow: 0 0 25px rgba(166, 124, 82, 0.3);
+            background: var(--sage);
+            color: var(--forest-black);
+            border-color: var(--warm-light);
         }
 
         /* --- Footer --- */
         footer {
-            padding: 100px 0;
+            padding: 120px 0 60px;
             text-align: center;
             border-top: 1px solid var(--line);
         }
 
         @media (max-width: 768px) {
             .invitation-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 3.5rem; }
+            .hero-title { font-size: 3.2rem; }
             .invitation-cell { padding: 40px; }
         }
     </style>
@@ -181,55 +190,54 @@
     <div class="container">
         <header>
             <div>Jordan Jozak</div>
-            <div><span class="pulse-node"></span>Live Transmission</div>
+            <div class="status-container"><span class="pulse-node"></span>Awareness Field Active</div>
         </header>
 
         <section class="hero">
-            <p class="hero-label">A Gentle Invitation</p>
-            <h1 class="hero-title">Welcome to the<br><span>Shared Field</span></h1>
-            <p style="max-width: 550px; font-size: 1.1rem; opacity: 0.8;">
-                Exploring the warmth of human presence and the quiet, organic reality of telepathic connection.
+            <p class="hero-label">A Foundation of Presence</p>
+            <h1 class="hero-title">The Next Interface<br>is <span>Organic</span></h1>
+            <p style="max-width: 500px; font-size: 1.05rem; color: var(--sage);">
+                Cultivating direct experience through the quiet power of human connection.
             </p>
         </section>
 
         <section class="invitation-grid">
             <div class="invitation-cell">
-                <p class="hero-label">The Foundation</p>
+                <p class="hero-label">Experiencing Connection</p>
                 <h2>The Telepathy Center</h2>
-                <p>The Telepathy Center is a space for <span class="accent-text">remembering</span> our natural capacity for non-verbal connection. It is not a place of study, but a sanctuary for direct experience and shared silence.</p>
-                <a href="https://thetelepathycenter.com" target="_blank" class="btn">Explore the Center</a>
+                <p><strong>The Telepathy Center</strong> is a sanctuary for remembering our natural capacity for non-verbal connection. We invite you to step away from the noise and into the <span class="accent-text">shared field</span> of presence.</p>
+                <a href="https://thetelepathycenter.com" target="_blank" class="btn">Enter the Center</a>
             </div>
             <div class="invitation-cell">
-                <p class="hero-label">The Vision</p>
-                <h2>The Next Interface</h2>
-                <p>We believe the most elegant technology is the one we were born with. By merging <span class="accent-text">tech-minimalism</span> with organic presence, we find our way back to one another.</p>
+                <p class="hero-label">The Philosophy</p>
+                <h2>Pure Inquiry</h2>
+                <p>By blending <span class="accent-text">tech-minimalism</span> with the warmth of the natural world, we rediscover the ancient tools of empathy, resonance, and direct awareness.</p>
             </div>
         </section>
 
-        <section class="artifact-section">
-            <h2 style="text-align: center; margin-bottom: 50px;">Artifacts & Presence</h2>
+        <section style="padding-bottom: 100px;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
                 <div class="video-card">
                     <div class="video-frame">
                         <iframe src="https://www.youtube.com/embed/juvgom9fQ9c" frameborder="0"></iframe>
                     </div>
-                    <p class="hero-label" style="font-size: 0.6rem;">Consciousness Field</p>
+                    <p class="hero-label" style="font-size: 0.6rem; margin-bottom: 0;">Transmission 01 // Field Focus</p>
                 </div>
                 <div class="video-card">
                     <div class="video-frame">
                         <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?start=453" frameborder="0"></iframe>
                     </div>
-                    <p class="hero-label" style="font-size: 0.6rem;">Skywatcher Dialogue</p>
+                    <p class="hero-label" style="font-size: 0.6rem; margin-bottom: 0;">Inquiry 04 // Skywatching</p>
                 </div>
             </div>
         </section>
 
         <footer>
-            <h2>Let’s connect in the field.</h2>
-            <p style="margin-bottom: 40px; opacity: 0.7;">Always curious, always open.</p>
+            <h2 style="color: var(--warm-light); margin-bottom: 15px;">Experience the work.</h2>
+            <p style="margin-bottom: 40px; color: var(--sage); max-width: 600px; margin-left: auto; margin-right: auto;">If you feel a pull toward the exploration of consciousness or the work at The Telepathy Center, let's connect.</p>
             <a href="mailto:jordan@thetelepathycenter.com" class="btn">Send a Signal</a>
-            <div style="margin-top: 60px; font-size: 0.6rem; opacity: 0.4; letter-spacing: 0.4em;">
-                &copy; 2025 JORDAN JOZAK • ORGANIC INTELLIGENCE
+            <div style="margin-top: 80px; font-size: 0.55rem; opacity: 0.5; letter-spacing: 0.5em; text-transform: uppercase;">
+                &copy; 2025 JORDAN JOZAK • BUILT FOR THE ORGANIC FUTURE
             </div>
         </footer>
     </div>
@@ -243,9 +251,9 @@
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
             blobs = [
-                { x: w*0.3, y: h*0.3, r: 450, col: '#2d3830', vx: 0.2, vy: 0.1 }, // Moss
-                { x: w*0.7, y: h*0.6, r: 500, col: '#1a1612', vx: -0.1, vy: -0.2 }, // Earth
-                { x: w*0.5, y: h*0.5, r: 350, col: '#a67c52', vx: 0.05, vy: 0.05 } // Sienna
+                { x: w*0.2, y: h*0.3, r: 600, col: '#0d1a16', vx: 0.15, vy: 0.1 }, // Deep Forest
+                { x: w*0.8, y: h*0.7, r: 550, col: '#162621', vx: -0.1, vy: -0.15 }, // Emerald
+                { x: w*0.5, y: h*0.5, r: 400, col: '#2d3830', vx: 0.08, vy: 0.08 } // Sage-y Moss
             ];
         }
 
@@ -253,8 +261,8 @@
             ctx.clearRect(0, 0, w, h);
             blobs.forEach(b => {
                 b.x += b.vx; b.y += b.vy;
-                if (b.x < 0 || b.x > w) b.vx *= -1;
-                if (b.y < 0 || b.y > h) b.vy *= -1;
+                if (b.x < -100 || b.x > w + 100) b.vx *= -1;
+                if (b.y < -100 || b.y > h + 100) b.vy *= -1;
 
                 let g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
                 g.addColorStop(0, b.col);
