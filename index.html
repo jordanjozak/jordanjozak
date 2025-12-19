@@ -1,1041 +1,268 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Jozak - The Telepathy Center</title>
+    <title>Jordan Jozak | The Next Interface is Organic</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@200;400&display=swap');
+
         :root {
-            --primary: #2d5f4f;
-            --accent: #7ba591;
-            --gold: #d4af37;
-            --gold-light: #f4d673;
-            --light: #e8f0ed;
-            --dark: #1a1a1a;
-            --text: #2c3e3a;
+            --deep-forest: #1b302a;
+            --ethereal-green: #9dbfad;
+            --morning-gold: #e2c07d;
+            --soft-white: #fdfcf8;
+            --glass: rgba(255, 255, 255, 0.03);
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: 
-                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, rgba(123, 165, 145, 0.1) 0%, transparent 50%),
-                linear-gradient(135deg, #f5f9f7 0%, #e8f0ed 50%, #fdfbf3 100%);
-            color: var(--text);
+            background-color: var(--deep-forest);
+            color: var(--soft-white);
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
-            position: relative;
+            line-height: 1.7;
         }
-        
-        /* Golden energy flow background */
-        .golden-flow {
+
+        /* --- Ambient Background --- */
+        #portal-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
+            z-index: -1;
+            filter: blur(40px);
             opacity: 0.6;
         }
-        
-        .flow-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(212, 175, 55, 0.4) 20%, 
-                rgba(244, 214, 115, 0.8) 50%, 
-                rgba(212, 175, 55, 0.4) 80%, 
-                transparent 100%);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-            animation: flow-move 15s linear infinite;
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-family: 'Cormorant Display', serif;
+            font-weight: 300;
+            letter-spacing: 0.05em;
         }
-        
-        .flow-line:nth-child(1) {
-            top: 15%;
-            width: 60%;
-            left: -60%;
-            animation-delay: 0s;
+
+        .italic { font-style: italic; }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        
-        .flow-line:nth-child(2) {
-            top: 35%;
-            width: 50%;
-            right: -50%;
-            animation: flow-move-reverse 18s linear infinite;
-            animation-delay: 3s;
-        }
-        
-        .flow-line:nth-child(3) {
-            top: 55%;
-            width: 70%;
-            left: -70%;
-            animation-delay: 6s;
-        }
-        
-        .flow-line:nth-child(4) {
-            top: 75%;
-            width: 55%;
-            right: -55%;
-            animation: flow-move-reverse 20s linear infinite;
-            animation-delay: 9s;
-        }
-        
-        @keyframes flow-move {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(100vw + 100%)); }
-        }
-        
-        @keyframes flow-move-reverse {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(-100vw - 100%)); }
-        }
-        
-        .golden-mandala {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            opacity: 0.08;
-            z-index: 1;
-            pointer-events: none;
-            animation: mandala-rotate 60s linear infinite;
-        }
-        
-        .golden-mandala:nth-child(1) {
-            top: 10%;
-            right: -200px;
-        }
-        
-        .golden-mandala:nth-child(2) {
-            bottom: 20%;
-            left: -250px;
-            animation-direction: reverse;
-            animation-duration: 80s;
-        }
-        
-        @keyframes mandala-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Organic flowing background with gold accents */
-        .background-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.5;
-        }
-        
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-        }
-        
-        /* Hero Section */
+
+        section { padding: 100px 0; position: relative; }
+
+        /* --- Hero Section --- */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 80px 40px;
             text-align: center;
         }
-        
-        .logo-sphere {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 60px;
-            position: relative;
-            animation: gentle-float 8s ease-in-out infinite;
-        }
-        
-        @keyframes gentle-float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        .organic-sphere {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(244, 214, 115, 0.4) 0%,
-                rgba(123, 165, 145, 0.5) 35%,
-                rgba(45, 95, 79, 0.4) 65%,
-                rgba(212, 175, 55, 0.3) 100%);
-            box-shadow: 
-                0 20px 60px rgba(45, 95, 79, 0.4),
-                0 10px 40px rgba(212, 175, 55, 0.3),
-                inset -15px -15px 40px rgba(0, 0, 0, 0.3),
-                inset 15px 15px 40px rgba(244, 214, 115, 0.4);
-            position: relative;
-            overflow: hidden;
-            animation: sphere-breathe 6s ease-in-out infinite;
-        }
-        
-        @keyframes sphere-breathe {
-            0%, 100% {
-                box-shadow: 
-                    0 20px 60px rgba(45, 95, 79, 0.4),
-                    0 10px 40px rgba(212, 175, 55, 0.3),
-                    inset -15px -15px 40px rgba(0, 0, 0, 0.3),
-                    inset 15px 15px 40px rgba(244, 214, 115, 0.4);
-            }
-            50% {
-                box-shadow: 
-                    0 25px 70px rgba(45, 95, 79, 0.5),
-                    0 15px 50px rgba(212, 175, 55, 0.5),
-                    inset -15px -15px 40px rgba(0, 0, 0, 0.2),
-                    inset 15px 15px 40px rgba(244, 214, 115, 0.6);
-            }
-        }
-        
-        .sphere-glow {
-            position: absolute;
-            top: 20%;
-            left: 25%;
-            width: 50%;
-            height: 50%;
-            background: radial-gradient(circle, rgba(244, 214, 115, 0.8) 0%, rgba(255, 255, 255, 0.4) 40%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(20px);
-            animation: glow-pulse 4s ease-in-out infinite;
-        }
-        
-        .golden-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 140%;
-            height: 140%;
-            transform: translate(-50%, -50%) rotateX(75deg);
-            border: 2px solid rgba(212, 175, 55, 0.6);
-            border-radius: 50%;
-            animation: ring-orbit 8s linear infinite;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        @keyframes ring-orbit {
-            from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
-            to { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
-        }
-        
-        .golden-ring:nth-child(2) {
-            width: 160%;
-            height: 160%;
-            animation: ring-orbit 12s linear infinite reverse;
-            border-color: rgba(244, 214, 115, 0.4);
-        }
-        
-        .sphere-particles {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .sphere-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, rgba(244, 214, 115, 1) 0%, rgba(212, 175, 55, 0.5) 50%, transparent 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
-            animation: particle-float 4s ease-in-out infinite;
-        }
-        
-        .sphere-particle:nth-child(1) { top: 30%; left: 20%; animation-delay: 0s; }
-        .sphere-particle:nth-child(2) { top: 50%; left: 80%; animation-delay: 0.8s; }
-        .sphere-particle:nth-child(3) { top: 70%; left: 35%; animation-delay: 1.6s; }
-        .sphere-particle:nth-child(4) { top: 25%; left: 65%; animation-delay: 2.4s; }
-        .sphere-particle:nth-child(5) { top: 80%; left: 70%; animation-delay: 3.2s; }
-        
-        @keyframes particle-float {
-            0%, 100% { 
-                transform: translateY(0) scale(1);
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translateY(-20px) scale(1.3);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes glow-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-        
-        .connection-lines {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 140%;
-            height: 140%;
-        }
-        
-        .connection-lines svg {
-            width: 100%;
-            height: 100%;
-            animation: rotate-slow 40s linear infinite;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
-        }
-        
-        @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
+
+        .hero-content { animation: fadeIn 3s ease-in; }
+
         .main-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5em;
-            font-weight: 300;
-            letter-spacing: 8px;
-            margin-bottom: 25px;
-            color: var(--primary);
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--morning-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-family: 'Cormorant Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            animation: fade-in-up 1.2s ease-out;
+            color: var(--ethereal-green);
         }
-        
-        @keyframes fade-in-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8em;
-            font-weight: 300;
-            color: var(--accent);
-            margin-bottom: 50px;
-            letter-spacing: 2px;
-            animation: fade-in-up 1.2s ease-out 0.2s backwards;
-        }
-        
-        .mission-statement {
-            max-width: 650px;
-            font-size: 1.15em;
-            line-height: 1.9;
-            color: var(--text);
-            margin-bottom: 60px;
-            animation: fade-in-up 1.2s ease-out 0.4s backwards;
-        }
-        
-        .cta-primary {
-            display: inline-block;
-            padding: 20px 50px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(45, 95, 79, 0.3);
-            animation: fade-in-up 1.2s ease-out 0.6s backwards;
-        }
-        
-        .cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(45, 95, 79, 0.4);
-            background: var(--accent);
-        }
-        
-        /* Section Styles */
-        .section {
-            padding: 120px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.2em;
-            font-weight: 300;
-            color: var(--primary);
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-        }
-        
-        .section-description {
-            font-size: 1.15em;
-            color: var(--accent);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        /* Video Grid */
-        .video-grid {
+
+        /* --- The "Story" Flow --- */
+        .story-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .video-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(45, 95, 79, 0.15);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(123, 165, 145, 0.2);
-            position: relative;
-        }
-        
-        .video-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .video-card:hover::before {
-            opacity: 1;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.25), 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-        
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #000;
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .video-info {
-            padding: 25px;
-        }
-        
-        .video-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4em;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .video-description {
-            font-size: 0.95em;
-            color: var(--text);
-            opacity: 0.8;
-        }
-        
-        /* Featured Section */
-        .featured-work {
-            background: linear-gradient(135deg, rgba(45, 95, 79, 0.05) 0%, rgba(123, 165, 145, 0.05) 100%);
-            border-radius: 30px;
-            padding: 60px;
-            margin: 80px 0;
-            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.1);
-        }
-        
-        .featured-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-        
-        .featured-video {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.2);
-        }
-        
-        /* Twitter Feed */
-        .twitter-embed {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 30px;
-            box-shadow: 0 15px 50px rgba(45, 95, 79, 0.15);
-        }
-        
-        /* Articles Grid */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            margin-top: 60px;
-        }
-        
-        .article-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 40px rgba(45, 95, 79, 0.12);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(123, 165, 145, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .article-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--gold), var(--accent));
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-        }
-        
-        .article-card:hover::before {
-            transform: translateX(0);
-        }
-        
-        .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.2);
-        }
-        
-        .article-source {
-            font-size: 0.85em;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .article-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.35em;
-            color: var(--primary);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        
-        .article-link {
-            display: inline-flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
-            gap: 8px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
         }
-        
-        .article-link:hover {
-            color: var(--primary);
-            gap: 12px;
+
+        .glass-card {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 2px;
+            border-left: 1px solid var(--morning-gold);
+            backdrop-filter: blur(10px);
+            transition: 0.5s;
         }
-        
-        .article-link::after {
-            content: '→';
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
         }
-        
-        /* Contact Section */
-        .contact-section {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(30px);
-            border-radius: 30px;
-            padding: 80px 60px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(45, 95, 79, 0.15);
-        }
-        
-        .contact-form {
+
+        /* --- Media Portal --- */
+        .video-strip {
             display: flex;
-            flex-direction: column;
-            gap: 25px;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 30px;
+            scrollbar-width: thin;
         }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 18px 22px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(123, 165, 145, 0.3);
-            border-radius: 12px;
-            font-size: 1em;
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            transition: all 0.3s ease;
+
+        .video-strip::-webkit-scrollbar { height: 4px; }
+        .video-strip::-webkit-scrollbar-thumb { background: var(--morning-gold); }
+
+        .video-item {
+            min-width: 300px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(123, 165, 145, 0.1);
-        }
-        
-        .form-group textarea {
-            min-height: 160px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            padding: 18px 45px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: 500;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.4s ease;
+
+        /* --- CTA --- */
+        .portal-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--morning-gold);
+            color: var(--morning-gold);
+            text-decoration: none;
             text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(45, 95, 79, 0.3);
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            margin-top: 30px;
+            transition: 0.4s;
         }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            background: var(--accent);
-            box-shadow: 0 15px 40px rgba(45, 95, 79, 0.4);
+
+        .portal-btn:hover {
+            background: var(--morning-gold);
+            color: var(--deep-forest);
+            box-shadow: 0 0 20px rgba(226, 192, 125, 0.4);
         }
-        
-        /* Responsive */
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.8em;
-                letter-spacing: 4px;
-            }
-            
-            .subtitle {
-                font-size: 1.3em;
-            }
-            
-            .section {
-                padding: 80px 20px;
-            }
-            
-            .section-title {
-                font-size: 2.2em;
-            }
-            
-            .video-grid,
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-work {
-                padding: 40px 25px;
-            }
-            
-            .contact-section {
-                padding: 50px 30px;
-            }
+            .story-grid { grid-template-columns: 1fr; }
+            .main-title { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
-    <canvas class="background-canvas" id="bgCanvas"></canvas>
-    
-    <!-- Golden energy flows -->
-    <div class="golden-flow">
-        <div class="flow-line"></div>
-        <div class="flow-line"></div>
-        <div class="flow-line"></div>
-        <div class="flow-line"></div>
-    </div>
-    
-    <!-- Golden mandalas -->
-    <svg class="golden-mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#f4d673;stop-opacity:0.8" />
-                <stop offset="100%" style="stop-color:#d4af37;stop-opacity:0.6" />
-            </linearGradient>
-        </defs>
-        <g stroke="url(#mandalaGrad)" fill="none" stroke-width="0.5">
-            <circle cx="100" cy="100" r="80" opacity="0.6"/>
-            <circle cx="100" cy="100" r="60" opacity="0.7"/>
-            <circle cx="100" cy="100" r="40" opacity="0.8"/>
-            <circle cx="100" cy="100" r="20" opacity="0.9"/>
-            <path d="M 100 20 L 100 180 M 20 100 L 180 100" opacity="0.5"/>
-            <path d="M 35 35 L 165 165 M 165 35 L 35 165" opacity="0.5"/>
-            <circle cx="100" cy="20" r="5" fill="url(#mandalaGrad)"/>
-            <circle cx="180" cy="100" r="5" fill="url(#mandalaGrad)"/>
-            <circle cx="100" cy="180" r="5" fill="url(#mandalaGrad)"/>
-            <circle cx="20" cy="100" r="5" fill="url(#mandalaGrad)"/>
-        </g>
-    </svg>
-    
-    <svg class="golden-mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="mandalaGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#f4d673;stop-opacity:0.8" />
-                <stop offset="100%" style="stop-color:#d4af37;stop-opacity:0.6" />
-            </linearGradient>
-        </defs>
-        <g stroke="url(#mandalaGrad2)" fill="none" stroke-width="0.5">
-            <circle cx="100" cy="100" r="80" opacity="0.6"/>
-            <circle cx="100" cy="100" r="60" opacity="0.7"/>
-            <circle cx="100" cy="100" r="40" opacity="0.8"/>
-            <circle cx="100" cy="100" r="20" opacity="0.9"/>
-            <path d="M 100 20 L 100 180 M 20 100 L 180 100" opacity="0.5"/>
-            <path d="M 35 35 L 165 165 M 165 35 L 35 165" opacity="0.5"/>
-        </g>
-    </svg>
-    
-    <div class="content-wrapper">
-        <!-- Hero Section -->
+
+    <canvas id="portal-canvas"></canvas>
+
+    <div class="container">
+        <nav style="padding: 40px 0; display: flex; justify-content: space-between; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;">
+            <div>Jordan Jozak</div>
+            <div style="color: var(--morning-gold);">Human / Founder / Skywatcher</div>
+        </nav>
+
         <section class="hero">
-            <div class="logo-sphere">
-                <div class="organic-sphere">
-                    <div class="sphere-glow"></div>
-                    <div class="golden-ring"></div>
-                    <div class="golden-ring"></div>
-                    <div class="sphere-particles">
-                        <div class="sphere-particle"></div>
-                        <div class="sphere-particle"></div>
-                        <div class="sphere-particle"></div>
-                        <div class="sphere-particle"></div>
-                        <div class="sphere-particle"></div>
-                    </div>
-                </div>
-                <div class="connection-lines">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#7ba591;stop-opacity:0.6" />
-                                <stop offset="100%" style="stop-color:#2d5f4f;stop-opacity:0.3" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="100" cy="100" r="60" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.4"/>
-                        <circle cx="100" cy="100" r="45" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.5"/>
-                        <circle cx="100" cy="100" r="30" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.6"/>
-                        <line x1="100" y1="40" x2="100" y2="160" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.3"/>
-                        <line x1="40" y1="100" x2="160" y2="100" stroke="url(#lineGrad)" stroke-width="0.5" opacity="0.3"/>
-                    </svg>
-                </div>
-            </div>
-            
-            <h1 class="main-title">Jordan Jozak</h1>
-            <p class="subtitle">The Next Interface is Organic</p>
-            <p class="mission-statement">
-                Founder of The Telepathy Center. Exploring consciousness through direct experience.
-            </p>
-            <a href="https://thetelepathycenter.com" class="cta-primary" target="_blank">Visit The Telepathy Center</a>
-        </section>
-        
-        <!-- Featured Work -->
-        <section class="section">
-            <div class="featured-work">
-                <span class="featured-badge">Featured Work</span>
-                <div class="section-header">
-                    <h2 class="section-title">Consciousness & Connection</h2>
-                    <p class="section-description">
-                        Exploring the frontiers of human consciousness and our capacity for 
-                        non-verbal communication with ourselves, each other, and beyond.
-                    </p>
-                </div>
-                <div class="featured-video">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/juvgom9fQ9c?si=68urm5nvALNJRTf2" title="Featured Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Latest Updates -->
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">Latest Updates</h2>
-                <p class="section-description">
-                    Follow the journey of consciousness exploration and telepathic development
+            <div class="hero-content">
+                <p class="hero-sub">The Journey Toward</p>
+                <h1 class="main-title">Direct Connection</h1>
+                <p style="max-width: 500px; margin: 0 auto; font-weight: 200; opacity: 0.8;">
+                    Exploring the intersection of consciousness, technology, and the organic interfaces of tomorrow.
                 </p>
-            </div>
-            <div class="twitter-embed">
-                <a class="twitter-timeline" 
-                   data-width="600"
-                   data-height="600"
-                   data-theme="light" 
-                   data-tweet-limit="5"
-                   data-chrome="noheader nofooter noborders transparent"
-                   href="https://twitter.com/mercifulmartin">
-                    Tweets by @mercifulmartin
-                </a>
+                <a href="#journey" class="portal-btn">Enter the Story</a>
             </div>
         </section>
-        
-        <!-- Media & Conversations -->
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">Media & Conversations</h2>
-                <p class="section-description">
-                    Dialogues on consciousness, telepathy, and the journey toward healing
-                </p>
-            </div>
-            
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?si=jjJ9FuAX2m4XRYcg&amp;start=453" title="Skywatcher" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">Skywatcher</h3>
-                    </div>
+
+        <section id="journey">
+            <div class="story-grid">
+                <div>
+                    <h2 style="font-size: 3rem; margin-bottom: 2rem;">The Story <br><span class="italic">of Flow</span></h2>
+                    <p>My path has been a bridge between two worlds: the structured logic of founding technological ventures and the vast, non-linear landscape of human consciousness.</p>
+                    <br>
+                    <p>Through <strong>The Telepathy Center</strong>, I invite others to explore the "Next Interface"—one that isn't made of silicon, but of shared presence and direct experience.</p>
                 </div>
-                
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/JUthXIGUsq8?si=Outkx7uHf_wBw-wd&amp;start=0" title="Skywatcher" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">Continued</h3>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/aX9ogv0PEug?si=XWA8mlLavPWdHVs2&amp;start=0" title="Camp" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">Camp</h3>
-                    </div>
+                <div class="glass-card">
+                    <h3 style="color: var(--morning-gold); margin-bottom: 1rem;">Current Frequency</h3>
+                    <p style="font-size: 0.9rem;">Building spaces for healing, non-verbal communication, and the collective expansion of what it means to be 'connected'.</p>
+                    <a href="https://thetelepathycenter.com" target="_blank" class="portal-btn" style="padding: 10px 20px;">The Telepathy Center</a>
                 </div>
             </div>
         </section>
-        
-        <!-- Meditation Practice -->
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">Esalen</h2>
-                <p class="section-description">
-                    Meditation recording - October 17, 2024
-                </p>
-            </div>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div class="video-card">
-                    <iframe style="border-radius: 12px; width: 100%; height: 352px;" src="https://open.spotify.com/embed/playlist/4vn7cfgOzfjtlpsnC98NPi?utm_source=generator&theme=0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+        <section>
+            <h2 style="margin-bottom: 3rem; text-align: center;">Artifacts & Conversations</h2>
+            <div class="video-strip">
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/juvgom9fQ9c" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/PcuxnqQLuAQ?start=453" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/JUthXIGUsq8" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
-        
-        <!-- Featured Articles -->
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">Featured & Mentioned</h2>
-                <p class="section-description">
-                    Perspectives on consciousness, telepathy, and healing
-                </p>
-            </div>
-            
-            <div class="articles-grid">
-                <div class="article-card">
-                    <div class="article-source">Cybernews</div>
-                    <h3 class="article-title">Skywatcher</h3>
-                    <a href="https://cybernews.com/news/skywatcher-ufo-uap-cosmic/" target="_blank" class="article-link">Read Article</a>
-                </div>
-                
-                <div class="article-card">
-                    <div class="article-source">Medium</div>
-                    <h3 class="article-title">Exoconscious</h3>
-                    <a href="https://medium.com/@Exoconscious/exoconscious-human-alternative-to-psionic-transhumanism-37c09569420c" target="_blank" class="article-link">Read Article</a>
-                </div>
-                
-                <div class="article-card">
-                    <div class="article-source">UAP Week 2024</div>
-                    <h3 class="article-title">Speaker</h3>
-                    <a href="https://endeavor.swoogo.com/uaweek/speaker/349703/jordan-jozak" target="_blank" class="article-link">View Profile</a>
-                </div>
+
+        <section style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; opacity: 0.5; font-size: 0.8rem; letter-spacing: 2px;">
+                <span>CYBERNEWS</span>
+                <span>MEDIUM</span>
+                <span>UAP WEEK 2024</span>
+                <span>ESALEN</span>
             </div>
         </section>
-        
-        <!-- Contact -->
-        <section class="section">
-            <div class="contact-section">
-                <div class="section-header">
-                    <h2 class="section-title">Connect</h2>
-                    <p class="section-description">
-                        Interested in learning more about The Telepathy Center or exploring consciousness work together?
-                    </p>
-                </div>
-                <form name="jordan-contact" method="POST" data-netlify="true" class="contact-form">
-                    <input type="hidden" name="form-name" value="jordan-contact">
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Phone (Optional)">
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Your Message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+
+        <footer style="padding: 100px 0 50px; text-align: center;">
+            <h2 style="margin-bottom: 20px;">Let’s Connect</h2>
+            <p style="font-weight: 200; opacity: 0.7;">For inquiries regarding consciousness work, speaking, or the Center.</p>
+            <a href="mailto:jordan@thetelepathycenter.com" class="portal-btn">Send a Signal</a>
+            <div style="margin-top: 60px; font-size: 0.6rem; opacity: 0.3; letter-spacing: 2px;">
+                &copy; 2025 JORDAN JOZAK. ORGANIC INTELLIGENCE.
             </div>
-        </section>
+        </footer>
     </div>
 
     <script>
-        // Organic flowing background animation
-        const canvas = document.getElementById('bgCanvas');
+        // Ambient Consciousness Pulse Background
+        const canvas = document.getElementById('portal-canvas');
         const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = document.documentElement.scrollHeight;
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = document.documentElement.scrollHeight;
-        });
-        
-        const particles = [];
-        const particleCount = 60;
-        
-        class Particle {
-            constructor() {
-                this.reset();
+        let w, h, particles = [];
+
+        function init() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 5; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 200 + 200,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    color: i % 2 === 0 ? '#2d5f4f' : '#d4af37'
+                });
             }
-            
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.5 + 0.2;
-                this.isGold = Math.random() > 0.7;
-            }
-            
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            
-            draw() {
-                if (this.isGold) {
-                    ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = `rgba(212, 175, 55, ${this.opacity * 0.5})`;
-                } else {
-                    ctx.fillStyle = `rgba(123, 165, 145, ${this.opacity})`;
-                }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+
+                let grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+                grad.addColorStop(0, p.color);
+                grad.addColorStop(1, 'transparent');
+                ctx.fillStyle = grad;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-        }
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-        
-        function connectParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 150) {
-                        const opacity = (1 - distance / 150) * 0.2;
-                        const isGoldConnection = particles[i].isGold || particles[j].isGold;
-                        
-                        if (isGoldConnection) {
-                            ctx.strokeStyle = `rgba(212, 175, 55, ${opacity * 0.8})`;
-                            ctx.shadowBlur = 3;
-                            ctx.shadowColor = `rgba(212, 175, 55, ${opacity * 0.3})`;
-                        } else {
-                            ctx.strokeStyle = `rgba(123, 165, 145, ${opacity})`;
-                        }
-                        
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                        ctx.shadowBlur = 0;
-                    }
-                }
-            }
-        }
-        
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
             });
-            
-            connectParticles();
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
-        
-        animate();
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
     </script>
-    
-    <!-- Twitter Widget Script -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
