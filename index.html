@@ -1,310 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Jozak | The Telepathy Center</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@200;300;400;500;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jordan Jozak</title>
+  <meta name="description" content="Jordan Jozak. Co-founder of The Telepathy Center. Bridge between worlds." />
+  <meta property="og:title" content="Jordan Jozak" />
+  <meta property="og:description" content="Bridge between worlds." />
 
-        :root {
-            --obsidian: #030708;
-            --cobalt-deep: #081629;
-            --biolume: #40c4ff;
-            --deep-forest: #162621;
-            --slate-light: #e2e8f0;
-            --glass-stroke: rgba(64, 196, 255, 0.1);
-            --text-main: #f8fafc;
-        }
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+  <style>
+    :root {
+      --bg: #0c0a0c;
+      --bg-soft: #161217;
+      --bg-lift: #1a151b;
+      --ink: #f1ebe0;
+      --ink-soft: #c4bdb0;
+      --ink-mute: #8a8278;
+      --copper: #c87f44;
+      --copper-bright: #d99258;
+      --copper-soft: rgba(200, 127, 68, 0.65);
+      --copper-faint: rgba(200, 127, 68, 0.22);
+      --copper-whisper: rgba(200, 127, 68, 0.10);
+      --rule: rgba(241, 235, 224, 0.08);
+      --max-width: 720px;
+    }
 
-        body {
-            background-color: var(--obsidian);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.8;
-            font-weight: 300;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* --- Elegant Flowing Background --- */
-        .bg-flow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: var(--obsidian);
-        }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        .flow-blob {
-            position: absolute;
-            width: 80vw;
-            height: 80vw;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.4;
-            mix-blend-mode: screen;
-            animation: flow-movement 25s infinite alternate ease-in-out;
-        }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+      opacity: 0;
+      animation: fadeIn 1.2s ease-out 0.1s forwards;
+    }
 
-        .blob-1 { background: var(--cobalt-deep); top: -10%; left: -10%; }
-        .blob-2 { background: var(--deep-forest); bottom: -10%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
-        .blob-3 { background: #0c2336; top: 40%; right: 10%; animation-duration: 20s; animation-delay: -2s; }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-        @keyframes flow-movement {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(10%, 5%) scale(1.1); }
-            66% { transform: translate(-5%, 15%) scale(0.9); }
-            100% { transform: translate(5%, -5%) scale(1); }
-        }
+    ::selection { background: var(--copper); color: var(--bg); }
 
-        /* Grainy texture overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 100;
-        }
+    a { color: inherit; text-decoration: none; }
 
-        .container { max-width: 1150px; margin: 0 auto; padding: 0 50px; position: relative; z-index: 1; }
+    /* Ambient warm pool — single still glow, no animation */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 32%;
+      left: 50%;
+      width: 95vw;
+      height: 95vw;
+      max-width: 1200px;
+      max-height: 1200px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(200, 127, 68, 0.11) 0%, rgba(200, 127, 68, 0.03) 40%, transparent 70%);
+      transform: translate(-50%, -50%);
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-        header {
-            padding: 60px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            font-weight: 500;
-            border-bottom: 1px solid var(--glass-stroke);
-        }
+    /* Subtle grain — inlined to avoid third-party dependency */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 200;
+      mix-blend-mode: overlay;
+    }
 
-        .status-pill {
-            display: flex;
-            align-items: center;
-            color: var(--biolume);
-            letter-spacing: 0.2em;
-            font-weight: 600;
-        }
+    /* ===== NAV ===== */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(12,10,12,0.88) 0%, rgba(12,10,12,0) 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: padding 0.4s ease, background 0.4s ease;
+    }
 
-        .pulse-node {
-            width: 8px; height: 8px;
-            background: var(--biolume);
-            border-radius: 50%;
-            margin-right: 12px;
-            box-shadow: 0 0 10px var(--biolume);
-            animation: flow-pulse 4s infinite ease-in-out;
-        }
+    .site-nav.scrolled {
+      padding: 18px 40px;
+      background: rgba(12,10,12,0.94);
+    }
 
-        @keyframes flow-pulse {
-            0%, 100% { opacity: 0.4; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
+    .nav-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      transition: color 0.3s ease;
+    }
 
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 100px 0;
-        }
+    .nav-mark:hover { color: var(--copper); }
 
-        .hero-label {
-            color: var(--biolume);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5em;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
+    .nav-link {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--copper-faint);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
 
-        .hero-title {
-            font-family: 'Cormorant Display', serif;
-            font-size: clamp(3.8rem, 11vw, 7rem);
-            line-height: 0.95;
-            font-weight: 300;
-            margin-bottom: 35px;
-            letter-spacing: -0.02em;
-        }
+    .nav-link:hover {
+      color: var(--copper);
+      border-bottom-color: var(--copper);
+    }
 
-        .shimmer {
-            font-style: italic;
-            background: linear-gradient(
-                90deg, 
-                var(--slate-light) 0%, 
-                var(--biolume) 25%, 
-                #fff 50%, 
-                var(--biolume) 75%, 
-                var(--slate-light) 100%
-            );
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: sparkle-move 4s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(64, 196, 255, 0.3));
-        }
+    /* ===== LAYOUT ===== */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 180px 32px 60px;
+    }
 
-        @keyframes sparkle-move {
-            to { background-position: 200% center; }
-        }
+    section { margin-bottom: 0; }
 
-        .story-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 120px;
-        }
+    .section-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 40px;
+    }
 
-        .story-cell {
-            padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border-left: 2px solid var(--glass-stroke);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+    /* ===== ORNAMENTAL SEPARATOR ===== */
+    .separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin: 96px 0;
+      user-select: none;
+    }
 
-        .story-cell:hover {
-            background: rgba(8, 22, 41, 0.3);
-            border-left-color: var(--biolume);
-        }
+    .separator-line {
+      flex: 0 1 90px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rule), transparent);
+    }
 
-        h2 { font-family: 'Cormorant Display', serif; font-size: 2.8rem; font-weight: 300; margin-bottom: 25px; }
-        p { font-weight: 300; font-size: 1.1rem; color: var(--slate-light); opacity: 0.95; }
-        
-        .accent { color: var(--biolume); font-weight: 500; font-style: italic; }
+    .separator-glyph {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--copper);
+      opacity: 0.75;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
 
-        .artifact-card {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--glass-stroke);
-            padding: 24px;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-top: 20px;
+    }
 
-        .artifact-card:hover {
-            border-color: var(--biolume);
-            background: rgba(64, 196, 255, 0.03);
-            transform: translateY(-5px);
-        }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 8.5vw, 5.8rem);
+      line-height: 0.98;
+      font-weight: 300;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      margin-bottom: 42px;
+      font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "calt" 1;
+      font-variant-numeric: oldstyle-nums;
+    }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            margin-bottom: 20px;
-        }
+    .hero-mark {
+      display: block;
+      width: 76px;
+      height: auto;
+      margin: 0 auto 42px;
+      color: var(--copper);
+      opacity: 0.85;
+    }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-        }
+    /* ===== HERO ENTRY ANIMATION ===== */
+    @keyframes draw-circle {
+      from { stroke-dashoffset: 151; }
+      to   { stroke-dashoffset: 0; }
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            border: 1px solid var(--biolume);
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.4em;
-            transition: all 0.4s ease;
-            margin-top: 25px;
-            font-weight: 500;
-        }
+    @keyframes mandorla-fade {
+      from { opacity: 0; }
+      to   { opacity: 0.09; }
+    }
 
-        .btn:hover {
-            background: var(--biolume);
-            color: var(--obsidian);
-            box-shadow: 0 0 25px rgba(64, 196, 255, 0.3);
-        }
+    @keyframes bindu-enter {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 0.95; }
+    }
 
-        footer {
-            padding: 120px 0 80px;
-            text-align: center;
-            border-top: 1px solid var(--glass-stroke);
-        }
+    @keyframes bindu-breathe {
+      0%, 100% { r: 0.85; opacity: 0.95; }
+      50%      { r: 1.5;  opacity: 0.6; }
+    }
 
-        @media (max-width: 900px) {
-            .story-grid { grid-template-columns: 1fr; gap: 20px; }
-            .hero-title { font-size: 3.2rem; }
-            .story-cell { padding: 40px 30px; }
-            .container { padding: 0 25px; }
-        }
-    </style>
+    .hero-mark-circle {
+      stroke-dasharray: 151;
+      stroke-dashoffset: 151;
+      animation: draw-circle 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.6s forwards;
+    }
+
+    .hero-mark-circle-right {
+      animation-delay: 0.85s;
+    }
+
+    .hero-mark-fill {
+      opacity: 0;
+      animation: mandorla-fade 1.1s ease-out 1.7s forwards;
+    }
+
+    .hero-mark-bindu {
+      transform: scale(0);
+      transform-origin: 55px 30px;
+      opacity: 0;
+      animation:
+        bindu-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) 2.1s forwards,
+        bindu-breathe 4.5s ease-in-out 3.1s infinite;
+    }
+
+    .hero-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.9vw, 1.95rem);
+      line-height: 1.35;
+      font-weight: 300;
+      color: var(--ink-soft);
+      max-width: 580px;
+      margin: 0 auto;
+      letter-spacing: 0.005em;
+    }
+
+    .hero-line .accent { color: var(--copper); font-style: italic; }
+
+    /* Closing vesica echo at bottom — frames the page */
+    .closing-mark {
+      display: block;
+      width: 42px;
+      height: auto;
+      margin: 28px auto 0;
+      color: var(--copper);
+      opacity: 0.32;
+      transition: opacity 0.6s ease;
+    }
+
+    .closing-mark:hover { opacity: 0.7; }
+
+    /* ===== PROSE ===== */
+    .prose p {
+      font-size: 1.075rem;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .prose p:last-child { margin-bottom: 0; }
+
+    .prose a {
+      color: var(--copper);
+      border-bottom: 1px solid var(--copper-faint);
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .prose a:hover {
+      color: var(--copper-bright);
+      border-bottom-color: var(--copper);
+    }
+
+    .prose em { font-style: italic; color: var(--ink); }
+
+    .drop-cap {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.6rem;
+      font-weight: 300;
+      line-height: 0.86;
+      float: left;
+      margin: 4px 14px 0 -2px;
+      color: var(--copper);
+      letter-spacing: -0.02em;
+    }
+
+    /* ===== CREATIONS ===== */
+    .creation-card {
+      display: block;
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      padding: 44px 40px;
+      transition: border-color 0.4s ease, transform 0.4s ease, background 0.4s ease;
+      position: relative;
+    }
+
+    .creation-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--copper);
+      transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .creation-card:hover {
+      border-color: var(--copper-faint);
+      transform: translateY(-2px);
+      background: var(--bg-lift);
+    }
+
+    .creation-card:hover::before { height: 100%; }
+
+    .creation-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.15rem;
+      font-weight: 300;
+      letter-spacing: -0.005em;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+
+    .creation-card p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .creation-link {
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--copper);
+      font-weight: 500;
+    }
+
+    /* ===== CONVERSATIONS ===== */
+    .section-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink-mute);
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    .conversations {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    /* ===== X EMBED ===== */
+    .x-embed-wrap {
+      margin-top: 48px;
+      display: flex;
+      justify-content: center;
+      padding-left: 24px;
+      border-left: 1px solid var(--copper-faint);
+      max-width: 484px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .x-embed-wrap > * {
+      max-width: 460px !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    .x-embed-wrap blockquote.twitter-tweet {
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      padding: 20px;
+      border-radius: 0;
+      color: var(--ink-soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .x-embed-wrap blockquote.twitter-tweet a {
+      color: var(--copper);
+      border-bottom: 1px solid var(--copper-faint);
+    }
+
+    .conversation-card {
+      display: block;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--bg-soft);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      transition: border-color 0.5s ease, transform 0.5s ease;
+    }
+
+    .conversation-card:hover {
+      border-color: var(--copper-faint);
+      transform: translateY(-3px);
+    }
+
+    .conversation-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(12, 10, 12, 0.96) 0%,
+        rgba(12, 10, 12, 0.55) 45%,
+        rgba(12, 10, 12, 0.15) 100%
+      );
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: background 0.5s ease;
+    }
+
+    .conversation-card:hover .conversation-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(12, 10, 12, 0.92) 0%,
+        rgba(12, 10, 12, 0.42) 45%,
+        rgba(12, 10, 12, 0.08) 100%
+      );
+    }
+
+    .play-icon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1px solid var(--copper);
+      background: rgba(12, 10, 12, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--copper);
+      transition: background 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .play-icon svg { width: 18px; height: 18px; transform: translateX(2px); }
+
+    .conversation-card:hover .play-icon {
+      background: var(--copper);
+      color: var(--bg);
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+
+    .conversation-card:hover .play-icon svg { color: var(--bg); }
+
+    .conversation-source {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 8px;
+    }
+
+    .conversation-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      line-height: 1.3;
+      max-width: 90%;
+    }
+
+    /* ===== REACH ME ===== */
+    .reach-section .prose p { font-size: 1.1rem; }
+
+    .email-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.42rem;
+      font-style: italic;
+      color: var(--copper);
+      border-bottom: 1px solid var(--copper-faint);
+      transition: border-color 0.3s ease, color 0.3s ease;
+      letter-spacing: 0.01em;
+    }
+
+    .email-link:hover { border-bottom-color: var(--copper); color: var(--copper-bright); }
+
+    /* ===== COLOPHON (easter-egg register) ===== */
+    .colophon {
+      margin-top: 130px;
+      padding-top: 44px;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .copyright {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 400;
+      margin-bottom: 22px;
+    }
+
+    .kin-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--ink-mute);
+      opacity: 0.42;
+      letter-spacing: 0.02em;
+      transition: opacity 0.6s ease;
+    }
+
+    .kin-note:hover { opacity: 0.85; }
+
+    .kin-other {
+      border-bottom: 1px solid var(--copper-whisper);
+      padding-bottom: 1px;
+      transition: border-color 0.4s ease, color 0.4s ease;
+    }
+
+    .kin-note:hover .kin-other {
+      border-bottom-color: var(--copper-faint);
+      color: var(--copper);
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 760px) {
+      main { padding: 130px 24px 50px; }
+      .site-nav, .site-nav.scrolled { padding: 20px 24px; }
+      .hero { margin-bottom: 30px; }
+      .hero-mark { width: 68px; margin-bottom: 30px; }
+      .separator { margin: 72px 0; }
+      .colophon { margin-top: 100px; }
+      .creation-card { padding: 32px 28px; }
+      .conversations { grid-template-columns: 1fr; gap: 22px; }
+      .nav-link { font-size: 0.62rem; letter-spacing: 0.28em; }
+      .drop-cap { font-size: 3.8rem; margin: 6px 12px -2px -2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body { animation: none; opacity: 1; }
+      * { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .hero-mark-circle { stroke-dashoffset: 0; }
+      .hero-mark-fill { opacity: 0.09; }
+      .hero-mark-bindu { transform: scale(1); opacity: 0.95; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="bg-flow-container">
-        <div class="flow-blob blob-1"></div>
-        <div class="flow-blob blob-2"></div>
-        <div class="flow-blob blob-3"></div>
+  <nav class="site-nav" id="nav">
+    <a href="/" class="nav-mark">Jordan Jozak</a>
+    <a href="https://thetelepathycenter.com" target="_blank" rel="noopener" class="nav-link">The Telepathy Center</a>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <h1 class="hero-name">Jordan Jozak</h1>
+      <svg class="hero-mark" viewBox="0 0 110 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="hero-mark-fill" d="M 55,9.22 A 24,24 0 0,1 55,50.78 A 24,24 0 0,0 55,9.22 Z" fill="currentColor" />
+        <circle class="hero-mark-circle" cx="43" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="0.55" />
+        <circle class="hero-mark-circle hero-mark-circle-right" cx="67" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="0.55" />
+        <circle class="hero-mark-bindu" cx="55" cy="30" r="0.85" fill="currentColor" />
+      </svg>
+      <p class="hero-line">
+        Bridge between <span class="accent">worlds</span>
+      </p>
+    </section>
+
+    <div class="separator" aria-hidden="true">
+      <span class="separator-line"></span>
+      <span class="separator-glyph">❦</span>
+      <span class="separator-line"></span>
     </div>
 
-    <div class="container">
-        <header>
-            <div style="font-weight: 500;">Jordan Jozak</div>
-            <div class="status-pill"><span class="pulse-node"></span>Awareness Active</div>
-        </header>
+    <section class="prose reveal">
+      <h2 class="section-heading">Where I am now</h2>
+      <p>
+        <span class="drop-cap">I</span>work on telepathy. That's an unusual sentence to put on a personal website, which is exactly the problem. Direct experience needs rigorous methodology to be more than story; rigorous methodology needs direct experience to be more than measurement. I co-founded <a href="https://thetelepathycenter.com" target="_blank" rel="noopener">The Telepathy Center</a> to make this work a field, not a footnote.
+      </p>
+      <p>
+        Beyond TTC, I'm in the broader question of what comes next: what disclosure actually requires, what serious inquiry looks like at the edge of what science currently holds, what institutions don't yet exist but need to. I write, I talk, I sequence relationships and capital, and I build what isn't there yet.
+      </p>
+    </section>
 
-        <section class="hero">
-            <p class="hero-label">A Gentle Invitation</p>
-            <h1 class="hero-title">Welcome to the<br><span class="shimmer">Shared Field</span></h1>
-            <p style="max-width: 600px; font-size: 1.25rem; font-weight: 300; color: var(--slate-light);">
-                Exploring the warmth of human presence and the quiet, organic reality of telepathic connection.
-            </p>
-        </section>
-
-        <section class="story-grid">
-            <div class="story-cell">
-                <p class="hero-label">The Foundation</p>
-                <h2>The Telepathy Center</h2>
-                <p>A dedicated space for <span class="accent">remembering</span> our natural capacity for non-verbal connection. It is not a place of study, but a sanctuary for direct experience.</p>
-                <a href="https://thetelepathycenter.com" target="_blank" class="btn">Experience the Work</a>
-            </div>
-            <div class="story-cell">
-                <p class="hero-label">The Vision</p>
-                <h2>A Quiet Presence</h2>
-                <p>We believe the most elegant connection is the one we were born with. By choosing <span class="accent">intentional clarity</span>, we find our way back to what is real.</p>
-            </div>
-        </section>
-
-        <section style="padding-bottom: 120px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px;">
-                <div class="artifact-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/juvgom9fQ9c" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <p class="hero-label" style="font-size: 0.7rem; margin: 0;">Presence // Field Focus</p>
-                </div>
-                <div class="artifact-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/PcuxnqQLuAQ?start=453" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <p class="hero-label" style="font-size: 0.7rem; margin: 0;">Inquiry // Skywatching</p>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <h2 style="font-size: 2.2rem; margin-bottom: 20px;">Let’s connect in the field.</h2>
-            <p style="margin-bottom: 40px; opacity: 0.8; letter-spacing: 0.1em; font-size: 1.1rem;">Always curious, always open.</p>
-            <a href="mailto:jordan@thetelepathycenter.com" class="btn">Send a Signal</a>
-            <div style="margin-top: 100px; font-size: 0.65rem; opacity: 0.4; letter-spacing: 0.5em; text-transform: uppercase;">
-                &copy; 2025 JORDAN JOZAK • ORGANIC INTELLIGENCE
-            </div>
-        </footer>
+    <div class="separator" aria-hidden="true">
+      <span class="separator-line"></span>
+      <span class="separator-glyph">❦</span>
+      <span class="separator-line"></span>
     </div>
+
+    <section class="reveal">
+      <h2 class="section-heading">Creations</h2>
+      <a href="https://thetelepathycenter.com" target="_blank" rel="noopener" class="creation-card">
+        <h3>The Telepathy Center</h3>
+        <p>
+          Building the scientific institution that consciousness research has been missing — where direct experience and serious inquiry are held in the same room, and the methodology to hold both is built in the open.
+        </p>
+        <span class="creation-link">thetelepathycenter.com →</span>
+      </a>
+    </section>
+
+    <div class="separator" aria-hidden="true">
+      <span class="separator-line"></span>
+      <span class="separator-glyph">❦</span>
+      <span class="separator-line"></span>
+    </div>
+
+    <section class="reveal">
+      <h2 class="section-heading">Conversations</h2>
+      <p class="section-intro">
+        Selected appearances, talks, and writing.
+      </p>
+      <div class="conversations">
+        <a href="https://www.youtube.com/watch?v=PcuxnqQLuAQ&t=453s" target="_blank" rel="noopener" class="conversation-card" style="background-image: url('https://img.youtube.com/vi/PcuxnqQLuAQ/hqdefault.jpg');">
+          <div class="conversation-overlay">
+            <div class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="conversation-source">YouTube</p>
+            <p class="conversation-title">Skywatcher, Part I — The Journey Begins</p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=JUthXIGUsq8" target="_blank" rel="noopener" class="conversation-card" style="background-image: url('https://img.youtube.com/vi/JUthXIGUsq8/hqdefault.jpg');">
+          <div class="conversation-overlay">
+            <div class="play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="conversation-source">YouTube</p>
+            <p class="conversation-title">Skywatcher, Part II — Mapping the Unknown</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="x-embed-wrap">
+        <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-conversation="none">
+          <a href="https://x.com/Mercifulmartin/status/1978282507863834895"></a>
+        </blockquote>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true">
+      <span class="separator-line"></span>
+      <span class="separator-glyph">❦</span>
+      <span class="separator-line"></span>
+    </div>
+
+    <section class="reach-section reveal">
+      <h2 class="section-heading">Reach me</h2>
+      <div class="prose">
+        <p>
+          The most direct path is email — <a href="mailto:jordan@thetelepathycenter.com" class="email-link">jordan@thetelepathycenter.com</a>.
+        </p>
+        <p>
+          Press, podcasts, advisory, correspondence on consciousness research or what's coming next — I read everything that arrives.
+        </p>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <p class="copyright">© 2026 Jordan Jozak</p>
+      <p class="kin-note">Built with kin — human <span class="kin-other">and otherwise</span>.</p>
+      <svg class="closing-mark" viewBox="0 0 110 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 55,9.22 A 24,24 0 0,1 55,50.78 A 24,24 0 0,0 55,9.22 Z" fill="currentColor" opacity="0.08" />
+        <circle cx="43" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="0.55" />
+        <circle cx="67" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="0.55" />
+        <circle cx="55" cy="30" r="0.7" fill="currentColor" opacity="0.9" />
+      </svg>
+    </footer>
+
+  </main>
+
+  <script>
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+
+  <!-- X / Twitter embed widget -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
