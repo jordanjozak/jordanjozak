@@ -130,6 +130,19 @@
       border-bottom-color: var(--copper);
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-link--gate {
+      color: var(--copper);
+      border-bottom-color: var(--copper-faint);
+    }
+
+    .nav-link--gate:hover { color: var(--copper-bright); }
+
     /* ===== LAYOUT ===== */
     main {
       max-width: var(--max-width);
@@ -719,6 +732,7 @@
       .creation-card { padding: 32px 28px; }
       .conversations { grid-template-columns: 1fr; gap: 22px; }
       .nav-link { font-size: 0.62rem; letter-spacing: 0.28em; }
+      .nav-links { gap: 16px; }
       .drop-cap { font-size: 3.8rem; margin: 6px 12px -2px -2px; }
     }
 
@@ -736,7 +750,10 @@
 
   <nav class="site-nav" id="nav">
     <a href="/" class="nav-mark">Jordan Jozak</a>
-    <a href="https://thetelepathycenter.com" target="_blank" rel="noopener" class="nav-link">The Telepathy Center</a>
+    <div class="nav-links">
+      <a href="/gate/" class="nav-link nav-link--gate">GATE</a>
+      <a href="https://thetelepathycenter.com" target="_blank" rel="noopener" class="nav-link">The Telepathy Center</a>
+    </div>
   </nav>
 
   <main>
