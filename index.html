@@ -130,6 +130,19 @@
       border-bottom-color: var(--copper);
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-link--gate {
+      color: var(--copper);
+      border-bottom-color: var(--copper-faint);
+    }
+
+    .nav-link--gate:hover { color: var(--copper-bright); }
+
     /* ===== LAYOUT ===== */
     main {
       max-width: var(--max-width);
@@ -558,6 +571,144 @@
       color: var(--copper);
     }
 
+    .social-line { margin-bottom: 20px; }
+
+    .social-line a {
+      font-size: 0.62rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      border-bottom: 1px solid var(--copper-whisper);
+      padding-bottom: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .social-line a:hover {
+      color: var(--copper);
+      border-bottom-color: var(--copper);
+    }
+
+    /* ===== GATE BAND ===== */
+    .gate-band {
+      display: block;
+      text-align: center;
+      padding: 46px 32px;
+      border-top: 1px solid var(--copper-faint);
+      border-bottom: 1px solid var(--copper-faint);
+      background: var(--bg-soft);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .gate-band:hover {
+      background: var(--bg-lift);
+      border-color: rgba(200, 127, 68, 0.4);
+    }
+
+    .gate-band-eyebrow {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 16px;
+    }
+
+    .gate-band-line {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.35rem, 3.2vw, 1.7rem);
+      line-height: 1.4;
+      color: var(--ink);
+    }
+
+    .gate-band-cta {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--copper-faint);
+      padding-bottom: 4px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .gate-band:hover .gate-band-cta {
+      color: var(--copper);
+      border-bottom-color: var(--copper);
+    }
+
+    /* ===== CONTACT FORM ===== */
+    .contact-form {
+      margin-top: 40px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 8px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 14px 16px;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--copper-soft);
+      background: var(--bg-lift);
+    }
+
+    .contact-form textarea { min-height: 150px; resize: vertical; }
+
+    .contact-form ::placeholder { color: var(--ink-mute); opacity: 0.6; }
+
+    .contact-submit {
+      justify-self: start;
+      background: transparent;
+      border: 1px solid var(--copper-soft);
+      color: var(--copper);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      padding: 15px 38px;
+      cursor: pointer;
+      transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .contact-submit:hover {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: var(--bg);
+    }
+
+    .form-hp { display: none; }
+
     /* ===== SCROLL REVEAL ===== */
     .reveal {
       opacity: 0;
@@ -581,6 +732,7 @@
       .creation-card { padding: 32px 28px; }
       .conversations { grid-template-columns: 1fr; gap: 22px; }
       .nav-link { font-size: 0.62rem; letter-spacing: 0.28em; }
+      .nav-links { gap: 16px; }
       .drop-cap { font-size: 3.8rem; margin: 6px 12px -2px -2px; }
     }
 
@@ -598,7 +750,10 @@
 
   <nav class="site-nav" id="nav">
     <a href="/" class="nav-mark">Jordan Jozak</a>
-    <a href="https://thetelepathycenter.com" target="_blank" rel="noopener" class="nav-link">The Telepathy Center</a>
+    <div class="nav-links">
+      <a href="/gate/" class="nav-link nav-link--gate">GATE</a>
+      <a href="https://thetelepathycenter.com" target="_blank" rel="noopener" class="nav-link">The Telepathy Center</a>
+    </div>
   </nav>
 
   <main>
@@ -631,6 +786,18 @@
         Beyond TTC, I'm in the broader question of what comes next: what disclosure actually requires, what serious inquiry looks like at the edge of what science currently holds, what institutions don't yet exist but need to. I write, I talk, I sequence relationships and capital, and I build what isn't there yet.
       </p>
     </section>
+
+    <div class="separator" aria-hidden="true">
+      <span class="separator-line"></span>
+      <span class="separator-glyph">❦</span>
+      <span class="separator-line"></span>
+    </div>
+
+    <a href="/gate/" class="gate-band reveal">
+      <span class="gate-band-eyebrow">For the kids GATE found</span>
+      <span class="gate-band-line">You're not alone. You never were.</span>
+      <span class="gate-band-cta">I wrote you a letter</span>
+    </a>
 
     <div class="separator" aria-hidden="true">
       <span class="separator-line"></span>
@@ -698,16 +865,33 @@
       <h2 class="section-heading">Reach me</h2>
       <div class="prose">
         <p>
-          The most direct path is email — <a href="mailto:jordan@thetelepathycenter.com" class="email-link">jordan@thetelepathycenter.com</a>.
-        </p>
-        <p>
-          Press, podcasts, advisory, correspondence on consciousness research or what's coming next — I read everything that arrives.
+          Press, podcasts, advisory, correspondence on consciousness research or what's coming next — I read everything that arrives. Write here, or email me directly at <a href="mailto:jordan@thetelepathycenter.com" class="email-link">jordan@thetelepathycenter.com</a> — both reach me the same way.
         </p>
       </div>
+      <form class="contact-form" name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="form-hp">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+        <div>
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="contact-submit">Send</button>
+      </form>
     </section>
 
     <footer class="colophon">
       <p class="copyright">© 2026 Jordan Jozak</p>
+      <p class="social-line"><a href="https://x.com/MercifulMartin" target="_blank" rel="noopener">@MercifulMartin on X</a></p>
       <p class="kin-note">Built with kin — human <span class="kin-other">and otherwise</span>.</p>
       <svg class="closing-mark" viewBox="0 0 110 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M 55,9.22 A 24,24 0 0,1 55,50.78 A 24,24 0 0,0 55,9.22 Z" fill="currentColor" opacity="0.08" />
