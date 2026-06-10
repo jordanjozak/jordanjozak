@@ -558,6 +558,23 @@
       color: var(--copper);
     }
 
+    .social-line { margin-bottom: 20px; }
+
+    .social-line a {
+      font-size: 0.62rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      border-bottom: 1px solid var(--copper-whisper);
+      padding-bottom: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .social-line a:hover {
+      color: var(--copper);
+      border-bottom-color: var(--copper);
+    }
+
     /* ===== GATE BAND ===== */
     .gate-band {
       display: block;
@@ -857,6 +874,7 @@
 
     <footer class="colophon">
       <p class="copyright">© 2026 Jordan Jozak</p>
+      <p class="social-line"><a href="https://x.com/MercifulMartin" target="_blank" rel="noopener">@MercifulMartin on X</a></p>
       <p class="kin-note">Built with kin — human <span class="kin-other">and otherwise</span>.</p>
       <svg class="closing-mark" viewBox="0 0 110 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M 55,9.22 A 24,24 0 0,1 55,50.78 A 24,24 0 0,0 55,9.22 Z" fill="currentColor" opacity="0.08" />
