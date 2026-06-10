@@ -588,6 +588,29 @@
       border-bottom-color: var(--copper);
     }
 
+    /* ===== PORTRAIT ===== */
+    .prose-portrait {
+      float: right;
+      width: 42%;
+      margin: 6px 0 18px 26px;
+    }
+
+    .prose-portrait img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid var(--rule);
+    }
+
+    @media (max-width: 600px) {
+      .prose-portrait {
+        float: none;
+        width: 78%;
+        margin: 6px auto 26px;
+      }
+    }
+
     /* ===== GATE BAND ===== */
     .gate-band {
       display: block;
@@ -779,6 +802,9 @@
 
     <section class="prose reveal">
       <h2 class="section-heading">Where I am now</h2>
+      <figure class="prose-portrait">
+        <img src="/images/jordan-overlook.jpg" alt="Jordan standing at an ocean overlook, green coastline behind him" width="900" height="1200" />
+      </figure>
       <p>
         <span class="drop-cap">I</span>work on telepathy. That's an unusual sentence to put on a personal website, which is exactly the problem. Direct experience needs rigorous methodology to be more than story; rigorous methodology needs direct experience to be more than measurement. I co-founded <a href="https://thetelepathycenter.com" target="_blank" rel="noopener">The Telepathy Center</a> to make this work a field, not a footnote.
       </p>
