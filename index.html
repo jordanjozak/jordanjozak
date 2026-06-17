@@ -521,6 +521,17 @@
       max-width: 90%;
     }
 
+    /* ===== FEATURED CONVERSATION ===== */
+    .conversation-feature { margin-bottom: 28px; }
+    .conversation-feature .conversation-overlay { padding: 30px 34px; }
+    .conversation-feature .conversation-source { font-size: 0.66rem; }
+    .conversation-feature .conversation-title {
+      font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+      max-width: 80%;
+    }
+    .conversation-feature .play-icon { width: 78px; height: 78px; }
+    .conversation-feature .play-icon svg { width: 23px; height: 23px; }
+
     /* ===== REACH ME ===== */
     .reach-section .prose p { font-size: 1.1rem; }
 
@@ -860,16 +871,17 @@
       <p class="section-intro">
         Selected appearances, talks, and writing.
       </p>
-      <div class="conversations">
-        <a href="https://www.youtube.com/watch?v=PiFbeWfA3LM" target="_blank" rel="noopener" class="conversation-card" style="background-image: url('https://img.youtube.com/vi/PiFbeWfA3LM/hqdefault.jpg');">
-          <div class="conversation-overlay">
-            <div class="play-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <p class="conversation-source">YouTube</p>
-            <p class="conversation-title">American Alchemy with Jesse Michels</p>
+      <a href="https://www.youtube.com/watch?v=PiFbeWfA3LM" target="_blank" rel="noopener" class="conversation-card conversation-feature" style="background-image: url('https://img.youtube.com/vi/PiFbeWfA3LM/maxresdefault.jpg');">
+        <div class="conversation-overlay">
+          <div class="play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
-        </a>
+          <p class="conversation-source">YouTube</p>
+          <p class="conversation-title">American Alchemy with Jesse Michels</p>
+        </div>
+      </a>
+
+      <div class="conversations">
         <a href="https://www.youtube.com/watch?v=PcuxnqQLuAQ&t=453s" target="_blank" rel="noopener" class="conversation-card" style="background-image: url('https://img.youtube.com/vi/PcuxnqQLuAQ/hqdefault.jpg');">
           <div class="conversation-overlay">
             <div class="play-icon" aria-hidden="true">
